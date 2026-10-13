@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPtLDV Interaktif — Sistem Pertidaksamaan Linear Dua Variabel | Konteks Budaya Salatiga</title>
+<meta name="description" content="Materi interaktif Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV): konsep, langkah menggambar, alat grafik daerah penyelesaian, LKPD kontekstual budaya Salatiga, latihan, dan kuis.">
+<style>
+/* ============================================================
+   TOKEN & RESET
+   ============================================================ */
+:root{
+  --bg:#f4f8f7;
+  --bg-soft:#ffffff;
+  --ink:#0f2a26;
+  --ink-2:#3d5a55;
+  --ink-3:#6b8781;
+  --line:#dce8e5;
+  --brand:#0f766e;
+  --brand-2:#0d9488;
+  --brand-soft:#d9f2ee;
+  --accent:#f59e0b;
+  --accent-soft:#fef3c7;
+  --berry:#be185d;
+  --berry-soft:#fce7f3;
+  --blue:#1d4ed8;
+  --blue-soft:#dbeafe;
+  --ok:#15803d;
+  --ok-soft:#dcfce7;
+  --err:#b91c1c;
+  --err-soft:#fee2e2;
+  --shadow:0 10px 30px rgba(15,42,38,.08);
+  --shadow-lg:0 24px 60px rgba(15,42,38,.16);
+  --r:18px;
+  --r-sm:12px;
+  --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+html[data-theme="dark"]{
+  --bg:#0b1513;
+  --bg-soft:#12211e;
+  --ink:#e8f4f1;
+  --ink-2:#b6cdc8;
+  --ink-3:#87a49e;
+  --line:#233a36;
+  --brand:#2dd4bf;
+  --brand-2:#5eead4;
+  --brand-soft:#123b37;
+  --accent:#fbbf24;
+  --accent-soft:#3a2c07;
+  --berry-soft:#3a1226;
+  --blue-soft:#0f2547;
+  --ok-soft:#0f2e1a;
+  --err-soft:#3a1414;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font);line-height:1.65;font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .5em;font-weight:800;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3.4rem)}
+h2{font-size:clamp(1.5rem,3.4vw,2.15rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em;padding-left:1.3em}
+li{margin:.3em 0}
+code,.mono{font-family:var(--mono)}
+button{font-family:inherit}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+section{padding:clamp(48px,7vw,90px) 0;scroll-margin-top:86px}
+.sec-head{max-width:760px;margin-bottom:34px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand);background:var(--brand-soft);
+  padding:.4em .9em;border-radius:999px;margin-bottom:14px;
+}
+.lead{font-size:1.07rem;color:var(--ink-2)}
+.card{
+  background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:var(--r);padding:26px;box-shadow:var(--shadow);
+}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+hr.sep{border:0;border-top:1px solid var(--line);margin:26px 0}
+
+/* ============================================================
+   TOP BAR / NAV
+   ============================================================ */
+#scrollbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--brand),var(--accent));z-index:120;transition:width .1s linear}
+header.top{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--bg-soft) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.navrow{display:flex;align-items:center;gap:16px;height:64px}
+.brandmark{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.02em}
+.brandmark .logo{width:34px;height:34px;flex:0 0 34px}
+.brandmark small{display:block;font-size:.62rem;font-weight:700;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;line-height:1}
+nav.links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.links a{
+  padding:.45em .8em;border-radius:999px;font-size:.88rem;font-weight:650;color:var(--ink-2);
+  transition:.15s;white-space:nowrap;
+}
+nav.links a:hover{background:var(--brand-soft);color:var(--brand);text-decoration:none}
+nav.links a.active{background:var(--brand);color:#fff}
+.iconbtn{
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--ink);
+  width:38px;height:38px;border-radius:11px;cursor:pointer;font-size:1rem;
+  display:grid;place-items:center;transition:.15s;
+}
+.iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+#burger{display:none}
+@media(max-width:940px){
+  #burger{display:grid}
+  nav.links{
+    display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;
+    background:var(--bg-soft);border-bottom:1px solid var(--line);padding:12px;gap:2px;
+    box-shadow:var(--shadow);
+  }
+  nav.links.open{display:flex}
+  nav.links a{padding:.7em .9em}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;overflow:hidden;padding:clamp(50px,8vw,96px) 0 clamp(40px,6vw,70px)}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(900px 460px at 12% -10%,rgba(13,148,136,.20),transparent 60%),
+    radial-gradient(700px 420px at 92% 8%,rgba(245,158,11,.16),transparent 62%);
+}
+.hero-grid{position:absolute;inset:0;opacity:.5;pointer-events:none}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+@media(max-width:940px){.hero-inner{grid-template-columns:1fr}}
+.hero h1 span.hl{
+  background:linear-gradient(120deg,var(--brand),var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+.pill{
+  font-size:.8rem;font-weight:700;padding:.42em .9em;border-radius:999px;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--ink-2);
+}
+.pill.b{border-color:transparent;background:var(--brand-soft);color:var(--brand)}
+.pill.a{border-color:transparent;background:var(--accent-soft);color:#92400e}
+html[data-theme="dark"] .pill.a{color:var(--accent)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:.55em;cursor:pointer;
+  font-weight:750;font-size:.95rem;padding:.78em 1.35em;border-radius:13px;
+  border:1px solid transparent;transition:.16s;
+}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px rgba(13,148,136,.28)}
+.btn-primary:hover{background:var(--brand-2)}
+.btn-ghost{background:var(--bg-soft);color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.btn-sm{padding:.5em .9em;font-size:.84rem;border-radius:10px}
+.btn-warn{background:var(--accent);color:#3b2503}
+.btn-danger{background:var(--err-soft);color:var(--err);border-color:transparent}
+.hero-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow-lg)}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+@media(max-width:640px){.statrow{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px}
+.stat b{display:block;font-size:1.5rem;line-height:1.1;color:var(--brand)}
+.stat span{font-size:.78rem;color:var(--ink-3);font-weight:600}
+
+/* ============================================================
+   KOMPONEN MATERI
+   ============================================================ */
+.note{border-left:5px solid var(--brand);background:var(--brand-soft);padding:16px 18px;border-radius:0 var(--r-sm) var(--r-sm) 0;margin:18px 0}
+.note.warn{border-color:var(--accent);background:var(--accent-soft)}
+.note.err{border-color:var(--err);background:var(--err-soft)}
+.note.ok{border-color:var(--ok);background:var(--ok-soft)}
+.note b.t{display:block;margin-bottom:4px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.formula{
+  font-family:var(--mono);font-size:1.05rem;text-align:center;
+  background:var(--bg-soft);border:1px dashed var(--line);
+  padding:18px;border-radius:var(--r-sm);margin:16px 0;overflow-x:auto;
+}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm);margin:16px 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem;background:var(--bg-soft)}
+th,td{border-bottom:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top}
+th{background:var(--brand-soft);color:var(--brand);font-weight:800;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:color-mix(in srgb,var(--brand-soft) 45%,transparent)}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin:12px 0;background:var(--bg-soft)}
+.acc>button{
+  width:100%;text-align:left;background:none;border:0;cursor:pointer;
+  padding:16px 18px;font-weight:750;font-size:1rem;color:var(--ink);
+  display:flex;gap:12px;align-items:center;
+}
+.acc>button .num{
+  flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:var(--brand-soft);color:var(--brand);
+  display:grid;place-items:center;font-size:.85rem;font-weight:900;
+}
+.acc>button .chev{margin-left:auto;transition:.25s;color:var(--ink-3)}
+.acc.open>button .chev{transform:rotate(90deg)}
+.acc .body{display:none;padding:0 18px 18px 60px;color:var(--ink-2)}
+.acc.open .body{display:block}
+@media(max-width:600px){.acc .body{padding-left:18px}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:22px}
+.tabs button{
+  background:none;border:0;border-bottom:3px solid transparent;cursor:pointer;
+  padding:.7em 1em;font-weight:750;color:var(--ink-3);font-size:.92rem;
+}
+.tabs button.active{color:var(--brand);border-color:var(--brand)}
+.tabpanel{display:none;animation:fade .3s}
+.tabpanel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   FORM / INPUT
+   ============================================================ */
+.field{margin-bottom:14px}
+label.lb{display:block;font-size:.83rem;font-weight:750;color:var(--ink-2);margin-bottom:6px}
+input[type=text],input[type=number],select,textarea{
+  width:100%;padding:.7em .85em;border:1.5px solid var(--line);border-radius:11px;
+  background:var(--bg-soft);color:var(--ink);font-family:var(--mono);font-size:.95rem;
+  transition:.15s;
+}
+textarea{font-family:var(--font);resize:vertical;min-height:90px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 18%,transparent)}
+input.correct{border-color:var(--ok);background:var(--ok-soft)}
+input.wrong{border-color:var(--err);background:var(--err-soft)}
+.hintline{font-size:.78rem;color:var(--ink-3);margin-top:5px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.tight{gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{
+  font-family:var(--mono);font-size:.82rem;padding:.35em .7em;border-radius:9px;cursor:pointer;
+  border:1px dashed var(--line);background:var(--bg-soft);color:var(--ink-2);transition:.15s;
+}
+.chip:hover{border-style:solid;border-color:var(--brand);color:var(--brand)}
+
+/* inequality row in graph tool */
+.iqrow{
+  display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;
+  padding:11px;border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:9px;background:var(--bg-soft);
+}
+.iqrow .dot{width:16px;height:16px;border-radius:5px;box-shadow:0 0 0 3px color-mix(in srgb,#fff 55%,transparent)}
+.iqrow .del{border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:1.1rem;padding:4px 8px;border-radius:8px}
+.iqrow .del:hover{background:var(--err-soft);color:var(--err)}
+.iqrow.err input{border-color:var(--err);background:var(--err-soft)}
+
+/* ============================================================
+   GRAFIK
+   ============================================================ */
+.plotwrap{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px;box-shadow:var(--shadow);position:relative;
+}
+.plotwrap svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;border-radius:10px;background:#fff}
+html[data-theme="dark"] .plotwrap svg{background:#0e1a18}
+.plotbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.82rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+.sw.line{height:4px;border-radius:2px;width:20px}
+.sw.dash{height:0;border-top:3px dashed currentColor;width:20px;border-radius:0}
+.regionbox{
+  margin-top:14px;padding:14px 16px;border-radius:var(--r-sm);
+  background:var(--brand-soft);border:1px solid color-mix(in srgb,var(--brand) 30%,transparent);
+  font-size:.93rem;
+}
+.regionbox b{color:var(--brand)}
+.vlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.vtag{font-family:var(--mono);font-size:.82rem;background:var(--bg-soft);border:1px solid var(--line);padding:.25em .6em;border-radius:8px}
+.tp{margin-top:12px;padding:13px 15px;border-radius:var(--r-sm);border:1px solid var(--line);font-size:.9rem}
+.tp.ok{background:var(--ok-soft);border-color:var(--ok)}
+.tp.no{background:var(--err-soft);border-color:var(--err)}
+.tp ul{margin:8px 0 0;padding-left:1.1em;font-family:var(--mono);font-size:.82rem}
+
+/* ============================================================
+   SIMULASI LANGKAH
+   ============================================================ */
+.steps{counter-reset:s;margin-top:18px}
+.step{
+  position:relative;padding:16px 18px 16px 58px;border:1px solid var(--line);
+  border-radius:var(--r-sm);margin-bottom:12px;background:var(--bg-soft);
+  opacity:.42;transform:translateX(-6px);transition:.45s;
+}
+.step.on{opacity:1;transform:none;border-color:var(--brand);box-shadow:0 6px 20px rgba(13,148,136,.12)}
+.step::before{
+  counter-increment:s;content:counter(s);
+  position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:9px;
+  background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:900;font-size:.85rem;
+}
+.step.on::before{background:var(--brand);color:#fff}
+.step h4{margin:0 0 4px;font-size:.98rem}
+.step p{margin:0;color:var(--ink-2);font-size:.92rem}
+.step .math{font-family:var(--mono);background:var(--bg);padding:8px 11px;border-radius:8px;margin-top:8px;font-size:.9rem;display:inline-block}
+
+/* ============================================================
+   LKPD
+   ============================================================ */
+.lkpd{background:var(--bg-soft);border:2px solid var(--brand);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.lkpd-head{
+  background:linear-gradient(120deg,var(--brand),#065f56);color:#fff;padding:26px 28px;
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+}
+.lkpd-head h2{color:#fff;margin:0}
+.lkpd-head p{margin:4px 0 0;color:#c9f2ec;font-size:.92rem}
+.lkpd-body{padding:26px 28px}
+.ident{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:24px}
+.ident input{font-family:var(--font)}
+.keg{border:1px solid var(--line);border-radius:var(--r);margin-bottom:24px;overflow:hidden}
+.keg>.keg-h{
+  background:var(--brand-soft);padding:14px 20px;display:flex;gap:12px;align-items:center;
+  border-bottom:1px solid var(--line);
+}
+.keg>.keg-h .badge{
+  background:var(--brand);color:#fff;font-weight:900;font-size:.78rem;padding:.3em .7em;border-radius:8px;letter-spacing:.06em;
+}
+.keg>.keg-h h3{margin:0;font-size:1.05rem}
+.keg>.keg-b{padding:20px}
+.story{
+  background:var(--bg);border-radius:var(--r-sm);padding:18px;margin-bottom:18px;
+  border-left:5px solid var(--accent);font-size:.96rem;color:var(--ink-2);
+}
+.story b{color:var(--ink)}
+.story .tokoh{font-weight:800;color:var(--berry)}
+html[data-theme="dark"] .story .tokoh{color:#f9a8d4}
+.q{margin:18px 0;padding-bottom:18px;border-bottom:1px dashed var(--line)}
+.q:last-child{border-bottom:0;padding-bottom:0;margin-bottom:0}
+.q .qt{font-weight:700;margin-bottom:10px;display:flex;gap:10px}
+.q .qt .n{
+  flex:0 0 26px;height:26px;border-radius:8px;background:var(--accent-soft);color:#92400e;
+  display:grid;place-items:center;font-size:.8rem;font-weight:900;
+}
+html[data-theme="dark"] .q .qt .n{color:var(--accent)}
+.fb{font-size:.85rem;margin-top:8px;font-weight:700;display:none;align-items:center;gap:6px}
+.fb.show{display:flex}
+.fb.ok{color:var(--ok)}
+.fb.no{color:var(--err)}
+.opts{display:grid;gap:8px;margin-top:6px}
+.opt{
+  display:flex;gap:11px;align-items:flex-start;padding:11px 14px;border:1.5px solid var(--line);
+  border-radius:11px;cursor:pointer;background:var(--bg-soft);transition:.15s;font-size:.93rem;
+}
+.opt:hover{border-color:var(--brand)}
+.opt input{margin-top:4px;accent-color:var(--brand);flex:0 0 auto}
+.opt.picked{border-color:var(--brand);background:var(--brand-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrongpick{border-color:var(--err);background:var(--err-soft)}
+.opt .mono{font-family:var(--mono)}
+.scorebar{
+  position:sticky;bottom:14px;z-index:20;margin:8px 28px 26px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:14px 18px;
+  box-shadow:var(--shadow-lg);display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+}
+.meter{flex:1;min-width:180px;height:12px;background:var(--bg);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--brand));transition:width .5s}
+.badge-earn{font-size:.85rem;font-weight:800;color:var(--accent)}
+
+/* ============================================================
+   KUIS
+   ============================================================ */
+.quizcard{border:1px solid var(--line);border-radius:var(--r-sm);padding:18px;margin-bottom:14px;background:var(--bg-soft)}
+.quizcard h4{margin:0 0 10px;font-size:.98rem;display:flex;gap:9px}
+.quizcard h4 .n{background:var(--blue-soft);color:var(--blue);border-radius:8px;min-width:26px;height:26px;display:grid;place-items:center;font-size:.8rem;font-weight:900}
+html[data-theme="dark"] .quizcard h4 .n{color:#93c5fd}
+.resultbox{display:none;margin-top:18px;padding:20px;border-radius:var(--r);text-align:center}
+.resultbox.show{display:block}
+.resultbox .big{font-size:2.6rem;font-weight:900;line-height:1}
+
+/* ============================================================
+   FOOTER / MISC
+   ============================================================ */
+footer{background:#07211d;color:#a9cbc5;padding:46px 0 30px;margin-top:40px}
+html[data-theme="dark"] footer{background:#060f0e}
+footer h4{color:#fff}
+footer a{color:#7fd8cb}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin-bottom:26px}
+.fbot{border-top:1px solid #143833;padding-top:18px;font-size:.83rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#toTop{position:fixed;right:18px;bottom:18px;z-index:90;opacity:0;pointer-events:none;transition:.25s;width:46px;height:46px;border-radius:14px;background:var(--brand);color:#fff;border:0;cursor:pointer;font-size:1.2rem;box-shadow:var(--shadow-lg)}
+#toTop.show{opacity:1;pointer-events:auto}
+/* REVEAL = progressive enhancement. Tanpa JS konten TETAP terlihat. */
+.reveal{opacity:1;transform:none}
+html.jsanim .reveal{opacity:0;transform:translateY(18px);transition:.6s cubic-bezier(.2,.7,.3,1)}
+html.jsanim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html.jsanim .reveal{opacity:1;transform:none;transition:none}
+}
+.noscript-note{
+  background:var(--accent-soft);border:1px dashed var(--accent);color:#92400e;
+  padding:14px;border-radius:var(--r-sm);font-size:.88rem;text-align:center;
+}
+html[data-theme="dark"] .noscript-note{color:var(--accent)}
+.kbd{font-family:var(--mono);font-size:.8rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:.1em .45em;background:var(--bg)}
+.taglist{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0}
+.tag{font-size:.76rem;font-weight:700;padding:.28em .7em;border-radius:99px;background:var(--berry-soft);color:var(--berry)}
+html[data-theme="dark"] .tag{color:#f9a8d4}
+.culture-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:22px}
+.ccard{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px;text-align:center}
+.ccard .ic{font-size:1.7rem;line-height:1}
+.ccard b{display:block;margin-top:8px;font-size:.92rem}
+.ccard span{font-size:.78rem;color:var(--ink-3)}
+.savedflag{font-size:.8rem;color:var(--ok);font-weight:700;opacity:0;transition:.3s}
+.savedflag.show{opacity:1}
+
+/* print */
+@media print{
+  header.top,#toTop,#scrollbar,.cta,.plotbar,.tabs,.hero,.scorebar button,.no-print{display:none!important}
+  body{background:#fff;font-size:12pt}
+  section{padding:12px 0;break-inside:avoid}
+  .card,.lkpd,.keg{box-shadow:none;break-inside:avoid}
+  .lkpd{border-width:1px}
+  a{color:#000}
+  .acc .body{display:block!important}
+}
+</style>
+</head>
+<body>
+<div id="scrollbar"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="wrap navrow">
+    <div class="brandmark">
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="12" fill="#0f766e"/>
+        <path d="M8 34 L20 12 L32 26 L40 16" stroke="#fbbf24" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 40 L40 40" stroke="#99f6e4" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M8 8 L8 40" stroke="#99f6e4" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="26" cy="30" r="3.4" fill="#fff"/>
+      </svg>
+      <div>
+        SPtLDV<span style="color:var(--accent)">·</span>Salatiga
+        <small>Matematika Kelas X — Fase E</small>
+      </div>
+    </div>
+    <button class="iconbtn" id="burger" aria-label="Menu">☰</button>
+    <nav class="links" id="navlinks">
+      <a href="#materi">Materi</a>
+      <a href="#langkah">Langkah</a>
+      <a href="#simulasi">Simulasi</a>
+      <a href="#grafik">Grafik</a>
+      <a href="#lkpd">LKPD</a>
+      <a href="#latihan">Latihan</a>
+      <a href="#kuis">Kuis</a>
+    </nav>
+    <button class="iconbtn" id="themeBtn" title="Mode gelap/terang" aria-label="Ganti tema">◐</button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <svg class="hero-grid" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <pattern id="gp" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M40 0 L0 0 0 40" fill="none" stroke="#0f766e" stroke-opacity=".09" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="600" fill="url(#gp)"/>
+    <path d="M0 470 L300 190 L620 380 L900 120 L1200 300" fill="none" stroke="#0f766e" stroke-opacity=".16" stroke-width="2.5"/>
+    <path d="M0 540 L260 330 L560 500 L880 250 L1200 430" fill="none" stroke="#f59e0b" stroke-opacity=".18" stroke-width="2.5" stroke-dasharray="9 7"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Modul Interaktif · Kurikulum Merdeka</span>
+      <h1>Sistem Pertidaksamaan<br>Linear <span class="hl">Dua Variabel</span></h1>
+      <p class="lead">Belajar memodelkan, menggambar, dan menentukan <b>daerah penyelesaian</b> — langsung dari cerita nyata kota Salatiga: getuk kopyor, ronde jago, sate Suruh, batik Tegalrejo, sampai paket wisata ke Cengklik &amp; Kalitaman.</p>
+      <div class="pills">
+        <span class="pill b">✎ Input pertidaksamaan sendiri</span>
+        <span class="pill b">▧ Daerah HP tergambar otomatis</span>
+        <span class="pill a">◉ Klik titik uji di grafik</span>
+        <span class="pill a">✓ LKPD terkoreksi otomatis</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#grafik">🎯 Coba Alat Grafik</a>
+        <a class="btn btn-ghost" href="#lkpd">📄 Buka LKPD</a>
+        <a class="btn btn-ghost" href="#materi">📖 Baca Materi</a>
+      </div>
+      <div class="statrow">
+        <div class="stat"><b>7</b><span>Section belajar</span></div>
+        <div class="stat"><b>4</b><span>Kegiatan LKPD</span></div>
+        <div class="stat"><b>10</b><span>Soal kuis</span></div>
+        <div class="stat"><b>100%</b><span>Berjalan luring</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Pratinjau langsung — sistem getuk kopyor</div>
+      <div class="plotwrap" style="padding:8px;box-shadow:none;border:0">
+        <div id="heroPlot"><p class="noscript-note js-placeholder">Grafik interaktif memerlukan JavaScript.</p></div>
+      </div>
+      <div class="formula" style="margin:12px 0 0;font-size:.92rem">2x + y ≤ 8&nbsp;&nbsp;∧&nbsp;&nbsp;x + y ≤ 6<br>x ≥ 0, y ≥ 0</div>
+      <p style="font-size:.84rem;color:var(--ink-3);margin:10px 0 0;text-align:center">Daerah hijau = semua kemungkinan produksi yang bisa dipenuhi Bu Sri. Titik pojoknya: (0,0), (4,0), <b>(2,4)</b>, (0,6).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 1. MATERI ================= -->
+<section id="materi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">01 · Konsep Dasar</span>
+      <h2>Apa itu Sistem Pertidaksamaan Linear Dua Variabel?</h2>
+      <p class="lead">Sebelum masuk ke sistem, kita bedah dulu satu pertidaksamaannya — lalu kita lihat apa yang terjadi kalau beberapa pertidaksamaan digabung.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card reveal">
+        <h3>🔤 A. Pertidaksamaan Linear Dua Variabel (PtLDV)</h3>
+        <p>PtLDV adalah kalimat matematika terbuka yang memuat <b>dua variabel</b> (biasanya <code>x</code> dan <code>y</code>), masing-masing <b>berpangkat satu</b>, dan dihubungkan oleh tanda ketidaksamaan.</p>
+        <div class="formula">ax + by &nbsp;{&lt;, ≤, &gt;, ≥}&nbsp; c<br><span style="font-size:.8rem;color:var(--ink-3)">a, b, c ∈ ℝ &nbsp;dan&nbsp; a, b tidak keduanya nol</span></div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Tanda</th><th>Dibaca</th><th>Garis batas</th><th>Titik batas</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">&lt;</td><td>kurang dari</td><td>putus-putus</td><td>❌ tidak termasuk</td></tr>
+              <tr><td class="mono">&gt;</td><td>lebih dari</td><td>putus-putus</td><td>❌ tidak termasuk</td></tr>
+              <tr><td class="mono">≤</td><td>kurang dari atau sama dengan</td><td><b>tegas/penuh</b></td><td>✅ termasuk</td></tr>
+              <tr><td class="mono">≥</td><td>lebih dari atau sama dengan</td><td><b>tegas/penuh</b></td><td>✅ termasuk</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn"><b class="t">Ingat!</b> Di papan tulis tanda <span class="mono">≤</span> sering ditulis <span class="mono">&lt;=</span> dan <span class="mono">≥</span> ditulis <span class="mono">&gt;=</span>. Alat grafik di website ini menerima keduanya.</div>
+      </div>
+
+      <div class="card reveal">
+        <h3>🧩 B. Sistem PtLDV (SPtLDV)</h3>
+        <p>Sistem pertidaksamaan linear dua variabel adalah <b>dua atau lebih</b> PtLDV yang digabung dan harus dipenuhi <b>bersamaan</b>.</p>
+        <div class="formula" style="text-align:left;padding-left:26px">
+          ⎧ 2x + y ≤ 8<br>
+          ⎨ 4x + 2y ≤ 20<br>
+          ⎩ x ≥ 0 , y ≥ 0
+        </div>
+        <p><b>Penyelesaian sistem</b> = irisan (daerah yang sama-sama diarsir) dari semua penyelesaian tiap pertidaksamaan. Daerah ini disebut <b>Daerah Penyelesaian (DP)</b> atau <i>himpunan penyelesaian</i>, sering juga disebut <b>daerah feasibel</b>.</p>
+        <div class="note"><b class="t">Kata kunci soal cerita</b>
+          <div class="taglist">
+            <span class="tag">"paling banyak" → ≤</span>
+            <span class="tag">"tidak lebih dari" → ≤</span>
+            <span class="tag">"maksimum" → ≤</span>
+            <span class="tag">"setidaknya" → ≥</span>
+            <span class="tag">"paling sedikit" → ≥</span>
+            <span class="tag">"minimal" → ≥</span>
+            <span class="tag">"tidak kurang dari" → ≥</span>
+          </div>
+        </div>
+        <p style="margin-bottom:0"><b>Catatan penting:</b> karena <code>x</code> dan <code>y</code> biasanya menyatakan <i>banyak barang</i>, <i>lama waktu</i>, atau <i>jumlah orang</i>, maka selalu tambahkan <span class="mono">x ≥ 0</span> dan <span class="mono">y ≥ 0</span> (syarat non-negatif).</p>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:22px">
+      <h3>🏛️ C. Kenapa pakai konteks Salatiga?</h3>
+      <p>Salatiga bukan cuma kota sejuk di kaki Gunung Merbabu. Kota ini punya UMKM dan budaya yang penuh dengan <b>keterbatasan sumber daya</b> — persis seperti pertidaksamaan: bahan terbatas, modal terbatas, waktu terbatas, tetapi permintaan harus dipenuhi. Semua itu bisa kita modelkan dengan SPtLDV.</p>
+      <div class="culture-strip">
+        <div class="ccard"><div class="ic">🍡</div><b>Getuk Kopyor</b><span>Jajanan khas berbahan singkong &amp; kelapa muda</span></div>
+        <div class="ccard"><div class="ic">🍢</div><b>Sate Sapi Suruh</b><span>Kuliner legendaris sejak 1960-an</span></div>
+        <div class="ccard"><div class="ic">🍧</div><b>Ronde Jago</b><span>Wedang ronde malam di Jl. Sudirman</span></div>
+        <div class="ccard"><div class="ic">🥘</div><b>Tumpang Koyor</b><span>Sarapan khas berbumbu tempe semangit</span></div>
+        <div class="ccard"><div class="ic">🥜</div><b>Enting-enting Gepuk</b><span>Oleh-oleh kacang &amp; gula karamel</span></div>
+        <div class="ccard"><div class="ic">🕌</div><b>Masjid Kauman</b><span>Ikon religi &amp; sejarah kota</span></div>
+        <div class="ccard"><div class="ic">⛲</div><b>Alun-alun Pancasila</b><span>Ruang publik &amp; pusat kuliner malam</span></div>
+        <div class="ccard"><div class="ic">🏞️</div><b>Taman Cengklik</b><span>Destinasi keluarga di tengah kota</span></div>
+      </div>
+      <div class="note ok" style="margin-bottom:0"><b class="t">Alur belajar</b> Konsep → Langkah menggambar → Simulasi terbimbing → Alat grafik bebas → LKPD kontekstual → Latihan → Kuis.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. LANGKAH ================= -->
+<section id="langkah" style="background:var(--bg-soft);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">02 · Prosedur</span>
+      <h2>5 Langkah Menggambar Daerah Penyelesaian</h2>
+      <p class="lead">Klik tiap langkah untuk membuka penjelasannya. Urutan ini sama persis dengan yang dipakai alat grafik di bawah.</p>
+    </div>
+
+    <div class="acc open reveal"><button type="button"><span class="num">1</span> Tentukan garis batasnya <span class="chev">▶</span></button>
+      <div class="body"><p>Ubah tanda ketidaksamaan menjadi <b>"="</b>. Contoh: <span class="mono">2x + y ≤ 8</span> → garis batasnya <span class="mono">2x + y = 8</span>.</p>
+      <p>Gambar garis <b>tegas</b> jika tandanya <span class="mono">≤</span> atau <span class="mono">≥</span> (titik pada garis ikut menjadi penyelesaian), dan garis <b>putus-putus</b> jika tandanya <span class="mono">&lt;</span> atau <span class="mono">&gt;</span>.</p></div>
+    </div>
+    <div class="acc reveal"><button type="button"><span class="num">2</span> Cari titik potong dengan sumbu koordinat <span class="chev">▶</span></button>
+      <div class="body"><p>Untuk <span class="mono">ax + by = c</span>:</p>
+      <ul>
+        <li>memotong sumbu-X saat <span class="mono">y = 0</span> → titik <span class="mono">(c/a , 0)</span></li>
+        <li>memotong sumbu-Y saat <span class="mono">x = 0</span> → titik <span class="mono">(0 , c/b)</span></li>
+      </ul>
+      <p>Contoh <span class="mono">2x + y = 8</span>: potong X di <span class="mono">(4, 0)</span>, potong Y di <span class="mono">(0, 8)</span>. Hubungkan kedua titik itu.</p></div>
+    </div>
+    <div class="acc reveal"><button type="button"><span class="num">3</span> Ambil satu titik uji <span class="chev">▶</span></button>
+      <div class="body"><p>Pilih titik yang <b>tidak</b> terletak pada garis batas. Titik paling mudah adalah <span class="mono">O(0,0)</span>.</p>
+      <p>Jika <span class="mono">c = 0</span> (garisnya lewat titik asal), titik <span class="mono">(0,0)</span> tidak bisa dipakai — gunakan titik lain seperti <span class="mono">(1,0)</span> atau <span class="mono">(0,1)</span>.</p></div>
+    </div>
+    <div class="acc reveal"><button type="button"><span class="num">4</span> Substitusi &amp; tentukan sisi yang diarsir <span class="chev">▶</span></button>
+      <div class="body"><p>Masukkan koordinat titik uji ke pertidaksamaan.</p>
+      <ul>
+        <li>Jika pernyataan <b>BENAR</b> → arsirlah daerah yang <b>memuat</b> titik uji.</li>
+        <li>Jika pernyataan <b>SALAH</b> → arsirlah daerah yang <b>tidak memuat</b> titik uji (sisi sebaliknya).</li>
+      </ul>
+      <p>Contoh: <span class="mono">2x + y ≤ 8</span>, uji <span class="mono">(0,0)</span>: <span class="mono">0 ≤ 8</span> ✔ benar → arsir sisi yang memuat titik asal.</p></div>
+    </div>
+    <div class="acc reveal"><button type="button"><span class="num">5</span> Ulangi untuk semua pertidaksamaan, ambil irisannya <span class="chev">▶</span></button>
+      <div class="body"><p>Gambar semua daerah arsiran dalam <b>satu</b> bidang koordinat. Daerah Penyelesaian sistem adalah daerah yang terkena <b>semua</b> arsiran sekaligus.</p>
+      <p>Titik-titik sudut daerah itu disebut <b>titik pojok (corner points)</b> — sangat penting untuk menentukan nilai optimum pada materi program linear berikutnya.</p>
+      <div class="note" style="margin-bottom:0"><b class="t">Tips cepat</b> Untuk sistem <span class="mono">ax+by ≤ c</span> dengan <span class="mono">a, b, c &gt; 0</span> ditambah <span class="mono">x ≥ 0, y ≥ 0</span>, daerah penyelesaiannya <b>selalu</b> berada di kuadran I dan berbentuk poligon tertutup.</div></div>
+    </div>
+
+    <div class="card reveal" style="margin-top:26px">
+      <h3>⚠️ Kesalahan yang sering terjadi</h3>
+      <div class="grid g3" style="margin-bottom:0">
+        <div><b style="color:var(--err)">✘ Salah arah arsiran</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">Lupa melakukan titik uji, langsung mengarsir "ke atas" atau "ke kanan". Padahal untuk <span class="mono">y ≥ 2x + 1</span> yang diarsir memang atas, tetapi untuk <span class="mono">3x − 2y ≤ 6</span> belum tentu.</p></div>
+        <div><b style="color:var(--err)">✘ Garis batas salah jenis</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">Tanda <span class="mono">&lt;</span> digambar garis penuh. Akibatnya titik pada garis dianggap penyelesaian padahal bukan.</p></div>
+        <div><b style="color:var(--err)">✘ Lupa x ≥ 0 dan y ≥ 0</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">Pada soal cerita, hasil negatif (misal −3 kotak getuk) jelas tidak masuk akal. Selalu tulis syarat non-negatif.</p></div>
+        <div><b style="color:var(--err)">✘ Mengambil gabungan, bukan irisan</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">"Sistem" berarti harus dipenuhi <b>semua</b>. Daerah yang benar adalah yang diarsir paling padat (irisan).</p></div>
+        <div><b style="color:var(--err)">✘ Salah mengartikan kata soal</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">"Tidak lebih dari 8 kg" berarti <span class="mono">≤ 8</span>, bukan <span class="mono">&lt; 8</span>. Kata "maksimal" termasuk nilai 8 itu sendiri.</p></div>
+        <div><b style="color:var(--err)">✘ Skala sumbu tidak seragam</b><p style="font-size:.9rem;color:var(--ink-2);margin:4px 0 0">Satu kotak = 1 satuan di sumbu X tetapi = 2 satuan di sumbu Y membuat titik potong terbaca salah.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. SIMULASI ================= -->
+<section id="simulasi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">03 · Simulasi Terbimbing</span>
+      <h2>Langkah demi Langkah: Satu Pertidaksamaan</h2>
+      <p class="lead">Ketik satu pertidaksamaan, lalu tekan <b>Jalankan Langkah</b>. Website akan menuliskan bentuk baku, titik potong, titik uji, hasil substitusi, dan menggambar daerahnya sekaligus.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)">
+      <div class="card reveal">
+        <div class="field">
+          <label class="lb" for="simInput">Pertidaksamaan kamu</label>
+          <input type="text" id="simInput" value="2x + y <= 8" autocomplete="off" spellcheck="false">
+          <div class="chips" id="simChips">
+            <span class="chip" data-v="2x + y <= 8">2x + y ≤ 8</span>
+            <span class="chip" data-v="3x + 2y > 12">3x + 2y &gt; 12</span>
+            <span class="chip" data-v="y >= 2x - 1">y ≥ 2x − 1</span>
+            <span class="chip" data-v="x + 3y < 9">x + 3y &lt; 9</span>
+            <span class="chip" data-v="-2x + 5y <= 10">−2x + 5y ≤ 10</span>
+            <span class="chip" data-v="4x - y >= 8">4x − y ≥ 8</span>
+          </div>
+          <p class="hintline">Format bebas: <span class="kbd">2x+y&lt;=8</span>, <span class="kbd">y &gt; 2x - 1</span>, <span class="kbd">-x+3y≥9</span>, <span class="kbd">x &gt;= 2</span>, <span class="kbd">1.5x + 2y &lt;= 9</span></p>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <button class="btn btn-primary btn-sm" id="simRun">▶ Jalankan Langkah</button>
+          <button class="btn btn-ghost btn-sm" id="simReset">↺ Reset</button>
+        </div>
+        <div class="steps" id="simSteps"></div>
+        <div class="fb" id="simFb"></div>
+      </div>
+      <div class="reveal">
+        <div class="plotwrap">
+          <div class="plotbar">
+            <b style="font-size:.9rem">Daerah penyelesaian <span class="mono" id="simLabel">2x + y ≤ 8</span></b>
+            <span style="margin-left:auto" class="row tight">
+              <button class="btn btn-ghost btn-sm" data-simzoom="out">−</button>
+              <button class="btn btn-ghost btn-sm" data-simzoom="in">+</button>
+            </span>
+          </div>
+          <div id="simPlot"></div>
+          <div class="legend">
+            <span><i class="sw" style="background:rgba(13,148,136,.30)"></i> Daerah HP</span>
+            <span><i class="sw line" style="background:#0f766e"></i> Garis batas tegas (≤ / ≥)</span>
+            <span style="color:var(--berry)"><i class="sw dash"></i> Garis putus-putus (&lt; / &gt;)</span>
+            <span><i class="sw" style="background:#f59e0b;border-radius:99px"></i> Titik uji</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. ALAT GRAFIK ================= -->
+<section id="grafik" style="background:var(--bg-soft);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">04 · Alat Grafik Interaktif</span>
+      <h2>Masukkan Sistemmu, Lihat Daerah Penyelesaiannya</h2>
+      <p class="lead">Tambah sampai 6 pertidaksamaan. Daerah yang <b>terarsir hijau</b> adalah irisan semua pertidaksamaan — yaitu daerah penyelesaian sistemmu. Titik pojoknya dihitung otomatis, dan kamu bisa mengklik grafik untuk menguji titik mana pun.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)">
+      <!-- PANEL INPUT -->
+      <div class="card reveal">
+        <div class="field">
+          <label class="lb">Pilih contoh siap pakai</label>
+          <select id="presetSel">
+            <option value="">— Pilih contoh —</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lb">Pertidaksamaan sistem</label>
+          <div id="iqList"></div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn btn-ghost btn-sm" id="addIq">＋ Tambah pertidaksamaan</button>
+            <button class="btn btn-ghost btn-sm" id="addNonNeg">＋ x ≥ 0, y ≥ 0</button>
+            <button class="btn btn-danger btn-sm" id="clearIq">🗑 Kosongkan</button>
+          </div>
+        </div>
+        <hr class="sep">
+        <div class="field">
+          <label class="lb">Uji sebuah titik (atau klik langsung pada grafik)</label>
+          <div class="row">
+            <input type="number" id="tpX" value="1" step="0.5" style="width:88px" aria-label="nilai x">
+            <input type="number" id="tpY" value="1" step="0.5" style="width:88px" aria-label="nilai y">
+            <button class="btn btn-primary btn-sm" id="tpBtn">Cek titik</button>
+            <button class="btn btn-ghost btn-sm" id="tpClear">Hapus</button>
+          </div>
+        </div>
+        <div id="tpResult"></div>
+        <div class="note warn" style="margin-bottom:0"><b class="t">Bantuan format</b>
+          Gunakan <span class="kbd">&lt;=</span> atau <span class="kbd">≤</span>, <span class="kbd">&gt;=</span> atau <span class="kbd">≥</span>, <span class="kbd">&lt;</span>, <span class="kbd">&gt;</span>. Koefisien boleh pecahan/desimal. Contoh sah: <span class="mono">0.5x + 2y &lt;= 6</span>, <span class="mono">y &gt;= -1/2x + 3</span>, <span class="mono">x &lt;= 5</span>.
+        </div>
+      </div>
+
+      <!-- PANEL GRAFIK -->
+      <div class="reveal">
+        <div class="plotwrap">
+          <div class="plotbar">
+            <b style="font-size:.92rem">Bidang koordinat</b>
+            <span class="row tight" style="margin-left:auto">
+              <button class="btn btn-ghost btn-sm" data-zoom="out">− Zoom</button>
+              <button class="btn btn-ghost btn-sm" data-zoom="in">+ Zoom</button>
+              <button class="btn btn-ghost btn-sm" id="zoomReset">Reset</button>
+            </span>
+          </div>
+          <div id="mainPlot"></div>
+          <div class="legend">
+            <span><i class="sw" style="background:rgba(13,148,136,.32)"></i> Daerah Penyelesaian (irisan)</span>
+            <span><i class="sw" style="background:#fff;border:2px solid var(--brand);border-radius:99px"></i> Titik pojok</span>
+            <span><i class="sw" style="background:#be185d;border-radius:99px"></i> Titik uji</span>
+          </div>
+          <div class="regionbox" id="mainRegion"></div>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <h3 style="margin-bottom:8px">📌 Cara membaca grafik</h3>
+          <ul style="margin-bottom:0;font-size:.93rem;color:var(--ink-2)">
+            <li><b>Warna tiap garis</b> sama dengan warna titik di kolom input — jadi mudah mencocokkan pertidaksamaan dengan garisnya.</li>
+            <li><b>Garis putus-putus</b> = tanda <span class="mono">&lt;</span> atau <span class="mono">&gt;</span>: titik pada garis itu <i>bukan</i> bagian penyelesaian.</li>
+            <li><b>Titik pojok</b> berlabel koordinat; titik pojok adalah kandidat nilai maksimum/minimum pada program linear.</li>
+            <li>Daerah yang tersentuh <b>batas bidang gambar</b> berarti daerahnya <i>tidak terbatas (unbounded)</i> ke arah itu.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. LKPD ================= -->
+<section id="lkpd">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">05 · Lembar Kerja Peserta Didik</span>
+      <h2>LKPD: Matematika di Sekitar Kita — Budaya Salatiga</h2>
+      <p class="lead">Kerjakan langsung di halaman ini. Jawaban tersimpan otomatis di perangkatmu, dan terkoreksi otomatis begitu kamu menekan <b>Periksa Jawaban</b>.</p>
+    </div>
+
+    <div class="lkpd reveal">
+      <div class="lkpd-head">
+        <div>
+          <h2>LKPD — Sistem Pertidaksamaan Linear Dua Variabel</h2>
+          <p>Mata Pelajaran: Matematika &nbsp;·&nbsp; Kelas/Fase: X / E &nbsp;·&nbsp; Alokasi: 2 × 45 menit</p>
+          <p style="margin-top:6px"><b>Capaian Pembelajaran:</b> Peserta didik dapat menyelesaikan sistem pertidaksamaan linear dua variabel dan menyajikan daerah penyelesaiannya dari masalah kontekstual.</p>
+        </div>
+        <div class="row no-print" style="flex-direction:column;align-items:flex-end">
+          <button class="btn btn-warn btn-sm" onclick="window.print()">🖨 Cetak LKPD</button>
+          <button class="btn btn-ghost btn-sm" id="lkReset">↺ Ulangi dari awal</button>
+        </div>
+      </div>
+
+      <div class="lkpd-body">
+        <!-- IDENTITAS -->
+        <div class="ident">
+          <div class="field" style="margin:0"><label class="lb" for="idNama">Nama</label><input type="text" id="idNama" data-save placeholder="Nama lengkap"></div>
+          <div class="field" style="margin:0"><label class="lb" for="idKelas">Kelas</label><input type="text" id="idKelas" data-save placeholder="X-…"></div>
+          <div class="field" style="margin:0"><label class="lb" for="idNo">No. Absen</label><input type="text" id="idNo" data-save placeholder="…"></div>
+          <div class="field" style="margin:0"><label class="lb" for="idKel">Kelompok</label><input type="text" id="idKel" data-save placeholder="…"></div>
+        </div>
+
+        <div class="note" style="margin-top:0"><b class="t">Petunjuk pengerjaan</b>
+          <ol style="margin:6px 0 0">
+            <li>Baca cerita pada setiap kegiatan, lalu tentukan variabel <span class="mono">x</span> dan <span class="mono">y</span> terlebih dahulu.</li>
+            <li>Tuliskan model matematika (sistem pertidaksamaan) pada kolom yang disediakan.</li>
+            <li>Gunakan tombol <b>"Coba di alat grafik"</b> untuk memverifikasi modelmu — lihat apakah daerah penyelesaiannya masuk akal.</li>
+            <li>Jawab pertanyaan titik pojok, nilai optimum, dan kesimpulan.</li>
+            <li>Tekan <b>Periksa Jawaban</b>. Uraian tidak dikoreksi otomatis, tetapi tersimpan.</li>
+          </ol>
+        </div>
+
+        <!-- ================= KEGIATAN 1 ================= -->
+        <div class="keg" id="keg1">
+          <div class="keg-h"><span class="badge">KEGIATAN 1</span><h3>🍡 Getuk Kopyor Bu Sri — Keterbatasan Bahan &amp; Modal</h3></div>
+          <div class="keg-b">
+            <div class="story">
+              <span class="tokoh">Bu Sri</span> adalah pembuat <b>getuk kopyor</b>, jajanan khas Salatiga berbahan singkong dan kelapa muda, yang ia jual di sekitar <b>Pasar Raya Salatiga</b>. Setiap hari ia membuat dua ukuran kemasan: <b>kotak besar</b> dan <b>kotak kecil</b>.
+              <ul style="margin:12px 0 0">
+                <li>Satu kotak besar membutuhkan <b>2 kg singkong</b>, satu kotak kecil membutuhkan <b>1 kg singkong</b>. Persediaan singkong hari ini hanya <b>8 kg</b>.</li>
+                <li>Biaya kemasan kotak besar <b>Rp4.000</b>, kotak kecil <b>Rp2.000</b>. Modal kemasan yang tersedia <b>tidak lebih dari Rp20.000</b>.</li>
+              </ul>
+              Misalkan <span class="mono">x</span> = banyak kotak besar dan <span class="mono">y</span> = banyak kotak kecil.
+            </div>
+
+            <div class="plotwrap no-print" style="margin-bottom:18px">
+              <div class="plotbar">
+                <b style="font-size:.88rem">Bantuan visual — klik grafik untuk menguji titik</b>
+                <span style="margin-left:auto" class="row tight">
+                  <button class="btn btn-ghost btn-sm" data-minizoom="out" data-plot="m1">−</button>
+                  <button class="btn btn-ghost btn-sm" data-minizoom="in" data-plot="m1">+</button>
+                </span>
+              </div>
+              <div id="mini1"></div>
+              <div id="mini1Region" class="regionbox" style="margin-top:10px"></div>
+            </div>
+
+            <div class="q" data-q="1a">
+              <div class="qt"><span class="n">a</span><span>Tuliskan pertidaksamaan untuk <b>ketersediaan singkong</b>.</span></div>
+              <input type="text" data-ans="ineq:2x+y<=8" placeholder="contoh: 2x + y <= 8" spellcheck="false" autocomplete="off">
+              <div class="hintline">Ingat: total singkong yang terpakai tidak boleh melebihi 8 kg.</div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="1b">
+              <div class="qt"><span class="n">b</span><span>Tuliskan pertidaksamaan untuk <b>modal kemasan</b>.</span></div>
+              <input type="text" data-ans="ineq:4000x+2000y<=20000" placeholder="contoh: 4000x + 2000y <= 20000" spellcheck="false" autocomplete="off">
+              <div class="hintline">Boleh ditulis dalam rupiah penuh atau bentuk sederhana (mis. 4x + 2y ≤ 20) — keduanya diterima.</div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="1c">
+              <div class="qt"><span class="n">c</span><span>Syarat non-negatif untuk masalah ini adalah …</span></div>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="q1c" value="0"><span class="mono">x ≤ 0 dan y ≤ 0</span></label>
+                <label class="opt"><input type="radio" name="q1c" value="1"><span class="mono">x ≥ 0 dan y ≥ 0</span></label>
+                <label class="opt"><input type="radio" name="q1c" value="2"><span class="mono">x &gt; 0 dan y &gt; 0</span></label>
+                <label class="opt"><input type="radio" name="q1c" value="3"><span>Tidak perlu syarat tambahan</span></label>
+              </div>
+              <div class="fb" data-mc="q1c" data-correct="1"></div>
+            </div>
+
+            <div class="q" data-q="1d">
+              <div class="qt"><span class="n">d</span><span>Tentukan <b>titik potong kedua garis</b> <span class="mono">2x + y = 8</span> dan <span class="mono">4x + 2y = 20</span>.</span></div>
+              <div class="row">
+                <span>x =</span><input type="number" step="0.5" data-ans="num:2" style="width:100px" aria-label="x">
+                <span>y =</span><input type="number" step="0.5" data-ans="num:4" style="width:100px" aria-label="y">
+              </div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="1e">
+              <div class="qt"><span class="n">e</span><span>Pilih <b>semua</b> titik yang menjadi titik pojok daerah penyelesaian.</span></div>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="q1e" value="0"><span class="mono">(0, 0)</span></label>
+                <label class="opt"><input type="checkbox" name="q1e" value="1"><span class="mono">(0, 4)</span></label>
+                <label class="opt"><input type="checkbox" name="q1e" value="2"><span class="mono">(2, 4)</span></label>
+                <label class="opt"><input type="checkbox" name="q1e" value="3"><span class="mono">(4, 0)</span></label>
+                <label class="opt"><input type="checkbox" name="q1e" value="4"><span class="mono">(5, 0)</span></label>
+              </div>
+              <div class="fb" data-mc="q1e" data-correct="1,2,3" data-type="multi"></div>
+            </div>
+
+            <div class="q" data-q="1f">
+              <div class="qt"><span class="n">f</span><span>Apakah produksi <b>3 kotak besar dan 3 kotak kecil</b> mungkin dilakukan? Cek dengan titik uji pada grafik di atas.</span></div>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="q1f" value="0"><span>Mungkin, karena masih di dalam daerah penyelesaian</span></label>
+                <label class="opt"><input type="radio" name="q1f" value="1"><span>Tidak mungkin, karena melanggar salah satu pertidaksamaan</span></label>
+              </div>
+              <div class="fb" data-mc="q1f" data-correct="1"></div>
+            </div>
+
+            <div class="q" data-q="1g">
+              <div class="qt"><span class="n">g</span><span>Banyak kotak besar dan kecil terbanyak yang dapat diproduksi (masih di dalam daerah penyelesaian):</span></div>
+              <div class="row">
+                <span>x =</span><input type="number" step="1" data-ans="num:2" style="width:100px" aria-label="x">
+                <span>y =</span><input type="number" step="1" data-ans="num:4" style="width:100px" aria-label="y">
+              </div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="1h">
+              <div class="qt"><span class="n">h</span><span><b>Uraian:</b> jelaskan dengan kalimatmu sendiri mengapa titik <span class="mono">(5, 0)</span> <i>bukan</i> bagian dari daerah penyelesaian, meskipun memenuhi <span class="mono">2x + y ≤ 8</span>.</span></div>
+              <textarea data-save placeholder="Tuliskan alasanmu…"></textarea>
+              <div class="fb" data-essay="1"></div>
+            </div>
+
+            <div class="row no-print">
+              <button class="btn btn-primary btn-sm" data-check="keg1">✓ Periksa Kegiatan 1</button>
+              <button class="btn btn-ghost btn-sm" data-copy="m1">🔎 Coba di alat grafik</button>
+              <span class="savedflag">💾 tersimpan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= KEGIATAN 2 ================= -->
+        <div class="keg" id="keg2">
+          <div class="keg-h"><span class="badge">KEGIATAN 2</span><h3>🍧 Ronde Jago Malam Hari — Maksimumkan Pendapatan</h3></div>
+          <div class="keg-b">
+            <div class="story">
+              Kedai <b>Ronde Jago</b> di Jalan Sudirman Salatiga legendaris sejak puluhan tahun lalu. Menjelang malam yang dingin, kedai menyiapkan dua menu: <b>ronde jahe</b> (mangkuk besar, Rp10.000) dan <b>es kopyor durian</b> (Rp5.000).
+              <ul style="margin:12px 0 0">
+                <li>Persediaan <b>jahe 60 ons</b>: satu mangkuk ronde butuh 3 ons jahe, satu gelas es kopyor butuh 2 ons jahe (untuk sirup jahenya).</li>
+                <li>Kapasitas mangkuk &amp; gelas yang sudah dicuci <b>20 buah</b>.</li>
+              </ul>
+              Misalkan <span class="mono">x</span> = banyak mangkuk ronde jahe dan <span class="mono">y</span> = banyak gelas es kopyor.
+            </div>
+
+            <div class="plotwrap no-print" style="margin-bottom:18px">
+              <div class="plotbar">
+                <b style="font-size:.88rem">Bantuan visual — klik grafik untuk menguji titik</b>
+                <span style="margin-left:auto" class="row tight">
+                  <button class="btn btn-ghost btn-sm" data-minizoom="out" data-plot="m2">−</button>
+                  <button class="btn btn-ghost btn-sm" data-minizoom="in" data-plot="m2">+</button>
+                </span>
+              </div>
+              <div id="mini2"></div>
+              <div id="mini2Region" class="regionbox" style="margin-top:10px"></div>
+            </div>
+
+            <div class="q" data-q="2a">
+              <div class="qt"><span class="n">a</span><span>Model matematika untuk <b>persediaan jahe</b>:</span></div>
+              <input type="text" data-ans="ineq:3x+2y<=60" placeholder="contoh: 3x + 2y <= 60" spellcheck="false" autocomplete="off">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="2b">
+              <div class="qt"><span class="n">b</span><span>Model matematika untuk <b>kapasitas mangkuk &amp; gelas</b>:</span></div>
+              <input type="text" data-ans="ineq:x+y<=20" placeholder="contoh: x + y <= 20" spellcheck="false" autocomplete="off">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="2c">
+              <div class="qt"><span class="n">c</span><span>Pilih <b>semua</b> titik pojok daerah penyelesaian (dengan <span class="mono">x ≥ 0, y ≥ 0</span>).</span></div>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="q2c" value="0"><span class="mono">(0, 20)</span></label>
+                <label class="opt"><input type="checkbox" name="q2c" value="1"><span class="mono">(10, 10)</span></label>
+                <label class="opt"><input type="checkbox" name="q2c" value="2"><span class="mono">(20, 0)</span></label>
+                <label class="opt"><input type="checkbox" name="q2c" value="3"><span class="mono">(30, 0)</span></label>
+                <label class="opt"><input type="checkbox" name="q2c" value="4"><span class="mono">(0, 30)</span></label>
+              </div>
+              <div class="fb" data-mc="q2c" data-correct="0,1,2" data-type="multi"></div>
+            </div>
+
+            <div class="q" data-q="2d">
+              <div class="qt"><span class="n">d</span><span>Tuliskan fungsi pendapatan (dalam rupiah) <span class="mono">f(x, y)</span>.</span></div>
+              <input type="text" data-ans="ineq:10000x+5000y=0" placeholder="contoh: 10000x + 5000y" spellcheck="false" autocomplete="off">
+              <div class="hintline">Tulis dengan tanda <span class="kbd">=</span> juga boleh, mis. <span class="mono">f = 10000x + 5000y</span>. Huruf "f" akan diabaikan otomatis.</div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="2e">
+              <div class="qt"><span class="n">e</span><span>Kombinasi penjualan yang memberikan <b>pendapatan terbesar</b>:</span></div>
+              <div class="row">
+                <span>x =</span><input type="number" step="1" data-ans="num:10" style="width:96px" aria-label="x">
+                <span>y =</span><input type="number" step="1" data-ans="num:10" style="width:96px" aria-label="y">
+              </div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="2f">
+              <div class="qt"><span class="n">f</span><span>Besar pendapatan maksimum (rupiah, tulis angka saja):</span></div>
+              <input type="number" step="1000" data-ans="num:150000" placeholder="contoh: 150000" style="max-width:240px" aria-label="pendapatan maksimum">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="2g">
+              <div class="qt"><span class="n">g</span><span><b>Uraian:</b> mengapa titik <span class="mono">(0, 30)</span> tidak dapat dipilih meskipun hanya menjual es kopyor terlihat sederhana?</span></div>
+              <textarea data-save placeholder="Tuliskan alasanmu…"></textarea>
+              <div class="fb" data-essay="1"></div>
+            </div>
+
+            <div class="row no-print">
+              <button class="btn btn-primary btn-sm" data-check="keg2">✓ Periksa Kegiatan 2</button>
+              <button class="btn btn-ghost btn-sm" data-copy="m2">🔎 Coba di alat grafik</button>
+              <span class="savedflag">💾 tersimpan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= KEGIATAN 3 ================= -->
+        <div class="keg" id="keg3">
+          <div class="keg-h"><span class="badge">KEGIATAN 3</span><h3>🎨 Sanggar Batik Tegalrejo — Dua Tahap Produksi</h3></div>
+          <div class="keg-b">
+            <div class="story">
+              Sebuah sanggar batik di <b>Kelurahan Tegalrejo, Argomulyo</b> memproduksi dua motif: <b>Batik Merbabu</b> dan <b>Batik Getuk Kopyor</b>. Produksi melewati dua tahap dengan jam kerja terbatas per minggu.
+              <div class="tablewrap" style="margin-top:12px">
+                <table>
+                  <thead><tr><th>Tahap</th><th>Batik Merbabu</th><th>Batik Getuk Kopyor</th><th>Kapasitas/minggu</th></tr></thead>
+                  <tbody>
+                    <tr><td>Ngelowong (menggambar)</td><td>2 jam</td><td>1 jam</td><td>20 jam</td></tr>
+                    <tr><td>Nembok &amp; mewarna</td><td>1 jam</td><td>3 jam</td><td>30 jam</td></tr>
+                    <tr><td>Keuntungan per lembar</td><td>Rp15.000</td><td>Rp25.000</td><td>—</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              Misalkan <span class="mono">x</span> = banyak batik Merbabu dan <span class="mono">y</span> = banyak batik Getuk Kopyor (dalam lembar).
+            </div>
+
+            <div class="plotwrap no-print" style="margin-bottom:18px">
+              <div class="plotbar">
+                <b style="font-size:.88rem">Bantuan visual — klik grafik untuk menguji titik</b>
+                <span style="margin-left:auto" class="row tight">
+                  <button class="btn btn-ghost btn-sm" data-minizoom="out" data-plot="m3">−</button>
+                  <button class="btn btn-ghost btn-sm" data-minizoom="in" data-plot="m3">+</button>
+                </span>
+              </div>
+              <div id="mini3"></div>
+              <div id="mini3Region" class="regionbox" style="margin-top:10px"></div>
+            </div>
+
+            <div class="q" data-q="3a">
+              <div class="qt"><span class="n">a</span><span>Pertidaksamaan tahap <b>ngelowong</b>:</span></div>
+              <input type="text" data-ans="ineq:2x+y<=20" placeholder="contoh: 2x + y <= 20" spellcheck="false" autocomplete="off">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="3b">
+              <div class="qt"><span class="n">b</span><span>Pertidaksamaan tahap <b>nembok &amp; mewarna</b>:</span></div>
+              <input type="text" data-ans="ineq:x+3y<=30" placeholder="contoh: x + 3y <= 30" spellcheck="false" autocomplete="off">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="3c">
+              <div class="qt"><span class="n">c</span><span>Titik potong kedua garis tersebut adalah …</span></div>
+              <div class="row">
+                <span>x =</span><input type="number" step="0.5" data-ans="num:6" style="width:100px" aria-label="x">
+                <span>y =</span><input type="number" step="0.5" data-ans="num:8" style="width:100px" aria-label="y">
+              </div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="3d">
+              <div class="qt"><span class="n">d</span><span>Manakah yang <b>bukan</b> titik pojok daerah penyelesaiannya?</span></div>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="q3d" value="0"><span class="mono">(0, 0)</span></label>
+                <label class="opt"><input type="radio" name="q3d" value="1"><span class="mono">(0, 10)</span></label>
+                <label class="opt"><input type="radio" name="q3d" value="2"><span class="mono">(6, 8)</span></label>
+                <label class="opt"><input type="radio" name="q3d" value="3"><span class="mono">(10, 0)</span></label>
+                <label class="opt"><input type="radio" name="q3d" value="4"><span class="mono">(12, 0)</span></label>
+              </div>
+              <div class="fb" data-mc="q3d" data-correct="4"></div>
+            </div>
+
+            <div class="q" data-q="3e">
+              <div class="qt"><span class="n">e</span><span>Keuntungan terbesar diperoleh saat memproduksi:</span></div>
+              <div class="row">
+                <span>x =</span><input type="number" step="1" data-ans="num:6" style="width:96px" aria-label="x">
+                <span>lembar Merbabu dan y =</span><input type="number" step="1" data-ans="num:8" style="width:96px" aria-label="y">
+                <span>lembar Getuk Kopyor</span>
+              </div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="3f">
+              <div class="qt"><span class="n">f</span><span>Besar keuntungan maksimum (rupiah, angka saja):</span></div>
+              <input type="number" step="1000" data-ans="num:290000" placeholder="contoh: 290000" style="max-width:240px" aria-label="keuntungan maksimum">
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="3g">
+              <div class="qt"><span class="n">g</span><span><b>Uraian:</b> kalau sanggar menambah kapasitas tahap mewarna menjadi 36 jam, apa yang terjadi pada daerah penyelesaian dan titik pojoknya?</span></div>
+              <textarea data-save placeholder="Tuliskan analisismu…"></textarea>
+              <div class="fb" data-essay="1"></div>
+            </div>
+
+            <div class="row no-print">
+              <button class="btn btn-primary btn-sm" data-check="keg3">✓ Periksa Kegiatan 3</button>
+              <button class="btn btn-ghost btn-sm" data-copy="m3">🔎 Coba di alat grafik</button>
+              <span class="savedflag">💾 tersimpan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= KEGIATAN 4 ================= -->
+        <div class="keg" id="keg4">
+          <div class="keg-h"><span class="badge">KEGIATAN 4</span><h3>🚌 Paket Wisata Kota Salatiga — Proyek Kelompok</h3></div>
+          <div class="keg-b">
+            <div class="story">
+              Sebuah agen perjalanan lokal menyusun <b>paket wisata sehari</b> mengelilingi Salatiga: <b>Taman Cengklik</b>, <b>Kampung Budaya Kalitaman</b>, <b>Masjid Kauman</b>, kawasan <b>Kota Tua Jalan Diponegoro</b>, lalu ditutup kuliner <b>sate sapi Suruh</b> dan <b>tumpang koyor</b> di Alun-alun Pancasila.
+              <ul style="margin:12px 0 0">
+                <li>Dari 5 destinasi, agen ingin memilih beberapa. Misalkan <span class="mono">x</span> = jumlah destinasi alam/taman dan <span class="mono">y</span> = jumlah destinasi budaya/kuliner.</li>
+                <li>Total destinasi <b>paling banyak 4</b> buah.</li>
+                <li>Waktu tempuh &amp; kunjungan: destinasi alam rata-rata <b>2 jam</b>, destinasi budaya <b>1 jam</b>; total waktu <b>tidak lebih dari 6 jam</b>.</li>
+                <li>Agar paket menarik, destinasi budaya harus <b>lebih banyak</b> daripada destinasi alam.</li>
+                <li>Bus hanya menampung <b>12 peserta</b> dan minimal harus ada <b>1 destinasi alam</b> agar paket berbeda dari agen lain.</li>
+              </ul>
+            </div>
+
+            <div class="plotwrap no-print" style="margin-bottom:18px">
+              <div class="plotbar">
+                <b style="font-size:.88rem">Bantuan visual — klik grafik untuk menguji titik</b>
+                <span style="margin-left:auto" class="row tight">
+                  <button class="btn btn-ghost btn-sm" data-minizoom="out" data-plot="m4">−</button>
+                  <button class="btn btn-ghost btn-sm" data-minizoom="in" data-plot="m4">+</button>
+                </span>
+              </div>
+              <div id="mini4"></div>
+              <div id="mini4Region" class="regionbox" style="margin-top:10px"></div>
+            </div>
+
+            <div class="q" data-q="4a">
+              <div class="qt"><span class="n">a</span><span>Pilih <b>semua</b> pertidaksamaan yang merupakan model matematika dari cerita di atas.</span></div>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" name="q4a" value="0"><span class="mono">x + y ≤ 4</span></label>
+                <label class="opt"><input type="checkbox" name="q4a" value="1"><span class="mono">2x + y ≤ 6</span></label>
+                <label class="opt"><input type="checkbox" name="q4a" value="2"><span class="mono">y &gt; x</span></label>
+                <label class="opt"><input type="checkbox" name="q4a" value="3"><span class="mono">x + 2y ≤ 6</span></label>
+                <label class="opt"><input type="checkbox" name="q4a" value="4"><span class="mono">x ≥ 1</span></label>
+                <label class="opt"><input type="checkbox" name="q4a" value="5"><span class="mono">y ≤ 12</span></label>
+              </div>
+              <div class="fb" data-mc="q4a" data-correct="0,1,2,4" data-type="multi"></div>
+            </div>
+
+            <div class="q" data-q="4b">
+              <div class="qt"><span class="n">b</span><span>Tuliskan sistem pertidaksamaan lengkap yang kelompokmu pilih (pisahkan tiap baris dengan koma atau enter).</span></div>
+              <textarea data-ans="system:x+y<=4|2x+y<=6|y>x|x>=1" placeholder="contoh: x + y <= 4, 2x + y <= 6, y > x, x >= 1" spellcheck="false"></textarea>
+              <div class="hintline">Dinilai benar jika memuat keempat pertidaksamaan itu (urutan bebas, bentuk setara diterima).</div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="4c">
+              <div class="qt"><span class="n">c</span><span>Sebutkan <b>dua kemungkinan</b> kombinasi destinasi yang memenuhi semua syarat. Cek dulu dengan titik uji pada grafik!</span></div>
+              <div class="row">
+                <span>Kombinasi 1: x =</span><input type="number" step="1" data-ans="feas:m4" style="width:84px" aria-label="x1">
+                <span>y =</span><input type="number" step="1" data-ans="feas:m4" style="width:84px" aria-label="y1">
+              </div>
+              <div class="row" style="margin-top:8px">
+                <span>Kombinasi 2: x =</span><input type="number" step="1" data-ans="feas:m4" data-diff="1" style="width:84px" aria-label="x2">
+                <span>y =</span><input type="number" step="1" data-ans="feas:m4" data-diff="1" style="width:84px" aria-label="y2">
+              </div>
+              <div class="hintline">Kunci: titik harus berada di dalam daerah penyelesaian, dan dua kombinasi tidak boleh sama.</div>
+              <div class="fb"></div>
+            </div>
+
+            <div class="q" data-q="4d">
+              <div class="qt"><span class="n">d</span><span><b>Uraian:</b> rancang satu paket wisata Salatiga versi kelompokmu (pilih destinasi nyata, sebutkan durasi), lalu ubah menjadi sistem pertidaksamaan. Jelaskan makna tiap pertidaksamaan dalam konteks paketmu.</span></div>
+              <textarea data-save style="min-height:150px" placeholder="Nama paket: …&#10;Destinasi: …&#10;Variabel x = …, y = …&#10;Sistem pertidaksamaan: …&#10;Makna tiap pertidaksamaan: …"></textarea>
+              <div class="fb" data-essay="1"></div>
+            </div>
+
+            <div class="row no-print">
+              <button class="btn btn-primary btn-sm" data-check="keg4">✓ Periksa Kegiatan 4</button>
+              <button class="btn btn-ghost btn-sm" data-copy="m4">🔎 Coba di alat grafik</button>
+              <span class="savedflag">💾 tersimpan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKOR -->
+        <div class="scorebar">
+          <div>
+            <div style="font-weight:850;font-size:.95rem">Progres LKPD</div>
+            <div class="badge-earn" id="lkBadge">Ayo mulai dari Kegiatan 1 💪</div>
+          </div>
+          <div class="meter"><i id="lkMeter"></i></div>
+          <div style="text-align:right">
+            <div class="badge-earn" id="lkScore" style="font-size:1.3rem;color:var(--brand)">0</div>
+            <div style="font-size:.72rem;color:var(--ink-3)">dari 100 poin objektif</div>
+          </div>
+          <div class="row no-print">
+            <button class="btn btn-primary btn-sm" id="lkCheckAll">✓ Periksa Semua</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. LATIHAN ================= -->
+<section id="latihan" style="background:var(--bg-soft);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">06 · Latihan Mandiri</span>
+      <h2>Latihan Berjenjang</h2>
+      <p class="lead">Tiga level: mengenali, menggambar, dan menalar. Buka pembahasan setelah mencoba sendiri.</p>
+    </div>
+
+    <div class="tabs" id="latTabs">
+      <button class="active" data-tab="lat1">Level 1 · Dasar</button>
+      <button data-tab="lat2">Level 2 · Menggambar</button>
+      <button data-tab="lat3">Level 3 · Penalaran</button>
+    </div>
+
+    <div class="tabpanel active" id="lat1">
+      <div class="grid g2">
+        <div class="card">
+          <h3>Soal 1.1</h3>
+          <p>Manakah yang merupakan pertidaksamaan linear dua variabel?</p>
+          <ol type="a" style="color:var(--ink-2);font-size:.95rem">
+            <li><span class="mono">2x + 3y ≤ 12</span></li>
+            <li><span class="mono">x² + y ≥ 5</span></li>
+            <li><span class="mono">3x − 4y &gt; 0</span></li>
+            <li><span class="mono">x + y + z ≤ 10</span></li>
+            <li><span class="mono">5x &lt; 20</span></li>
+          </ol>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p style="margin-bottom:0">Yang benar: <b>(a)</b> dan <b>(c)</b>. (b) bukan linear karena memuat <span class="mono">x²</span>; (d) memuat tiga variabel; (e) hanya satu variabel (PtLSatuV).</p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 1.2</h3>
+          <p>Ubah kalimat berikut menjadi pertidaksamaan dengan <span class="mono">x</span> = banyak kotak enting-enting gepuk dan <span class="mono">y</span> = banyak bungkus getuk kopyor:</p>
+          <p style="color:var(--ink-2)">"Pedagang oleh-oleh di Jalan Sudirman hanya mampu menyediakan <b>tidak lebih dari 50 kemasan</b>, dan jumlah getuk kopyor <b>setidaknya dua kali</b> jumlah enting-enting."</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p class="mono">x + y ≤ 50<br>y ≥ 2x<br>x ≥ 0, y ≥ 0</p>
+            <p style="margin-bottom:0">Frasa "tidak lebih dari" → <span class="mono">≤</span>; "setidaknya" → <span class="mono">≥</span>. Coba masukkan ke alat grafik di atas!</p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 1.3</h3>
+          <p>Tentukan apakah titik <span class="mono">(3, 1)</span> memenuhi sistem:</p>
+          <div class="formula" style="margin:8px 0">x + 2y ≤ 5 &nbsp;∧&nbsp; 3x − y ≥ 4</div>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>Uji ke pertidaksamaan pertama: <span class="mono">3 + 2(1) = 5 ≤ 5</span> ✔ (benar, karena memakai ≤).</p>
+            <p style="margin-bottom:0">Uji ke pertidaksamaan kedua: <span class="mono">3(3) − 1 = 8 ≥ 4</span> ✔. Keduanya benar → <b>(3, 1) termasuk penyelesaian</b>. Perhatikan titik ini justru terletak <i>tepat pada</i> garis <span class="mono">x + 2y = 5</span>.</p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 1.4</h3>
+          <p>Garis batas <span class="mono">4x + 2y = 20</span> memotong sumbu-X dan sumbu-Y di titik …</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p style="margin-bottom:0"><span class="mono">y = 0 → 4x = 20 → x = 5</span>, jadi <b>(5, 0)</b>. <span class="mono">x = 0 → 2y = 20 → y = 10</span>, jadi <b>(0, 10)</b>.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="lat2">
+      <div class="grid g2">
+        <div class="card">
+          <h3>Soal 2.1</h3>
+          <p>Gambarkan daerah penyelesaian dari:</p>
+          <div class="formula" style="margin:8px 0">x + y ≤ 6, &nbsp; x ≥ 1, &nbsp; y ≥ 0</div>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>Titik pojok: <span class="mono">(1, 0)</span>, <span class="mono">(6, 0)</span>, <span class="mono">(1, 5)</span>. Daerah berupa segitiga siku-siku di kuadran I dengan batas kiri garis tegak <span class="mono">x = 1</span>.</p>
+            <p style="margin-bottom:0"><button class="btn btn-ghost btn-sm" data-copy='["x + y <= 6","x >= 1","y >= 0"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 2.2</h3>
+          <p>Gambarkan dan tentukan titik pojok daerah penyelesaian:</p>
+          <div class="formula" style="margin:8px 0">2x + y ≤ 10, &nbsp; x + 3y ≤ 15, &nbsp; x ≥ 0, &nbsp; y ≥ 0</div>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>Eliminasi: <span class="mono">2x + y = 10</span> dan <span class="mono">x + 3y = 15</span>. Kalikan persamaan kedua dengan 2 → <span class="mono">2x + 6y = 30</span>; kurangi → <span class="mono">5y = 20 → y = 4</span>, maka <span class="mono">x = 3</span>.</p>
+            <p style="margin-bottom:0">Titik pojok: <span class="mono">(0,0)</span>, <span class="mono">(5,0)</span>, <span class="mono">(3,4)</span>, <span class="mono">(0,5)</span>. <button class="btn btn-ghost btn-sm" data-copy='["2x + y <= 10","x + 3y <= 15","x >= 0","y >= 0"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 2.3</h3>
+          <p>Daerah penyelesaian sistem <span class="mono">y ≥ x + 1</span> dan <span class="mono">y ≤ −x + 5</span> berbentuk apa? Sebutkan titik pojoknya.</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>Perpotongan: <span class="mono">x + 1 = −x + 5 → 2x = 4 → x = 2, y = 3</span> → titik <span class="mono">(2, 3)</span>.</p>
+            <p style="margin-bottom:0">Dengan sumbu-X (<span class="mono">y = 0</span>): <span class="mono">y ≥ x+1</span> memberi <span class="mono">x ≤ −1</span>, <span class="mono">y ≤ −x+5</span> memberi <span class="mono">x ≥ −5</span>. Jadi daerah berupa segitiga dengan titik pojok <span class="mono">(2,3)</span>, <span class="mono">(−1,0)</span>, <span class="mono">(−5,0)</span>. <button class="btn btn-ghost btn-sm" data-copy='["y >= x + 1","y <= -x + 5"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 2.4</h3>
+          <p>Tuliskan sistem pertidaksamaan yang daerah penyelesaiannya adalah segiempat dengan titik pojok <span class="mono">(0,0)</span>, <span class="mono">(4,0)</span>, <span class="mono">(4,3)</span>, <span class="mono">(0,3)</span>.</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p style="margin-bottom:0"><span class="mono">x ≥ 0, x ≤ 4, y ≥ 0, y ≤ 3</span>. Ini contoh sistem yang semua pertidaksamaannya berupa garis sejajar sumbu koordinat. <button class="btn btn-ghost btn-sm" data-copy='["x >= 0","x <= 4","y >= 0","y <= 3"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="lat3">
+      <div class="grid g2">
+        <div class="card">
+          <h3>Soal 3.1 — Sate Sapi Suruh</h3>
+          <p>Penjual sate sapi Suruh menyiapkan <b>6 kg daging</b> (1 porsi = 0,2 kg) dan <b>40 tusuk sate</b> (1 porsi = 8 tusuk... ) — ternyata tusuk tidak cukup jika semua daging dipakai. Misalkan <span class="mono">x</span> = porsi dewasa (0,2 kg &amp; 8 tusuk) dan <span class="mono">y</span> = porsi anak (0,1 kg &amp; 4 tusuk).</p>
+          <p style="color:var(--ink-2)">a) Susun sistem pertidaksamaannya. b) Apakah 20 porsi dewasa dan 10 porsi anak dapat dilayani?</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>a) <span class="mono">0,2x + 0,1y ≤ 6</span> (daging) dan <span class="mono">8x + 4y ≤ 40</span> (tusuk), <span class="mono">x ≥ 0, y ≥ 0</span>. Bentuk sederhana: <span class="mono">2x + y ≤ 60</span> dan <span class="mono">2x + y ≤ 10</span>.</p>
+            <p style="margin-bottom:0">b) <span class="mono">2(20) + 10 = 50 &gt; 10</span> → <b>tidak dapat dilayani</b>. Perhatikan dua pertidaksamaan ini sejajar; yang "mengikat" adalah yang paling ketat, yaitu <span class="mono">2x + y ≤ 10</span>. Ini contoh menarik: satu pertidaksamaan bisa <i>redundan</i>. <button class="btn btn-ghost btn-sm" data-copy='["0.2x + 0.1y <= 6","8x + 4y <= 40","x >= 0","y >= 0"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 3.2 — Tumpang Koyor Pagi Hari</h3>
+          <p>Warung tumpang koyor di dekat Alun-alun Pancasila hanya buka 3 jam. Satu porsi butuh 6 menit penyajian, dan kapasitas meja membatasi <b>paling banyak 25 porsi</b>. Pemilik ingin porsi bungkus (<span class="mono">y</span>) <b>tidak kurang dari</b> porsi makan di tempat (<span class="mono">x</span>).</p>
+          <p style="color:var(--ink-2)">a) Buat model matematikanya. b) Berapa banyak kombinasi bilangan bulat yang mungkin? c) Jika keuntungan porsi makan di tempat Rp8.000 dan porsi bungkus Rp7.000, kombinasi mana yang memberi keuntungan terbesar?</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p>a) <span class="mono">6x + 6y ≤ 180</span> → <span class="mono">x + y ≤ 30</span>; <span class="mono">x + y ≤ 25</span>; <span class="mono">y ≥ x</span>; <span class="mono">x, y ≥ 0</span>. Karena <span class="mono">x + y ≤ 25</span> lebih ketat, pertidaksamaan waktu menjadi redundan.</p>
+            <p>c) Titik pojok: <span class="mono">(0,0)</span>, <span class="mono">(0,25)</span>, <span class="mono">(12,5 ; 12,5)</span> — bukan bilangan bulat, sehingga untuk solusi bulat terdekat ambil <span class="mono">(12, 13)</span> dengan <span class="mono">f = 8.000(12) + 7.000(13) = 187.000</span>. Bandingkan dengan <span class="mono">(0, 25)</span>: <span class="mono">f = 175.000</span>.</p>
+            <p style="margin-bottom:0">Kesimpulan: menjual porsi makan di tempat sebanyak mungkin <b>tidak selalu</b> paling untung; harus diuji ke semua titik pojok. <button class="btn btn-ghost btn-sm" data-copy='["x + y <= 25","y >= x","x >= 0","y >= 0"]'>🔎 Buka di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 3.3 — Analisis Kritis</h3>
+          <p>Diberikan sistem <span class="mono">x + y ≥ 8</span> dan <span class="mono">2x + 2y ≤ 10</span>. Apa yang terjadi pada daerah penyelesaiannya? Jelaskan.</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan <span class="chev">▶</span></button><div class="body">
+            <p style="margin-bottom:0">Kedua garis sejajar (gradien −1). Pertidaksamaan pertama menuntut <span class="mono">x + y ≥ 8</span>, sedangkan yang kedua setara dengan <span class="mono">x + y ≤ 5</span>. Tidak ada titik yang memenuhi keduanya → <b>daerah penyelesaiannya kosong (himpunan kosong)</b>. Alat grafik akan menampilkan pesan "daerah penyelesaian kosong". <button class="btn btn-ghost btn-sm" data-copy='["x + y >= 8","2x + 2y <= 10"]'>🔎 Buktikan di alat grafik</button></p>
+          </div></div>
+        </div>
+        <div class="card">
+          <h3>Soal 3.4 — Proyek Mini</h3>
+          <p>Wawancarai satu UMKM di Salatiga (penjual getuk, ronde, enting-enting, batik, atau kedai kopi di kawasan Kota Tua). Catat: (1) dua sumber daya yang terbatas, (2) dua jenis produk/jasa, (3) kebutuhan tiap produk atas sumber daya itu.</p>
+          <div class="acc"><button type="button"><span class="num">💡</span> Pembahasan / Rubrik <span class="chev">▶</span></button><div class="body">
+            <p style="margin-bottom:0">Rubrik penilaian: <b>ketepatan variabel</b> (20), <b>ketepatan model</b> (30), <b>gambar daerah penyelesaian</b> (20), <b>titik pojok &amp; interpretasi</b> (20), <b>komunikasi/laporan</b> (10). Masukkan model hasil wawancaramu ke alat grafik, lalu tangkap layar daerah penyelesaiannya sebagai lampiran laporan.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. KUIS ================= -->
+<section id="kuis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">07 · Uji Pemahaman</span>
+      <h2>Kuis Cepat — 10 Soal</h2>
+      <p class="lead">Pilih satu jawaban pada tiap soal, lalu tekan <b>Nilai Kuis</b>. Skor dan pembahasan muncul seketika.</p>
+    </div>
+    <div class="card reveal" id="quizBox"></div>
+    <div class="row reveal" style="margin-top:18px">
+      <button class="btn btn-primary" id="quizCheck">✓ Nilai Kuis</button>
+      <button class="btn btn-ghost" id="quizReset">↺ Ulangi</button>
+    </div>
+    <div class="resultbox card" id="quizResult"></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>SPtLDV · Salatiga</h4>
+        <p style="font-size:.9rem">Media pembelajaran interaktif Sistem Pertidaksamaan Linear Dua Variabel dengan konteks budaya dan UMKM Kota Salatiga, Jawa Tengah.</p>
+      </div>
+      <div>
+        <h4>Navigasi</h4>
+        <p style="font-size:.9rem">
+          <a href="#materi">Konsep Dasar</a><br>
+          <a href="#langkah">Langkah Menggambar</a><br>
+          <a href="#grafik">Alat Grafik</a><br>
+          <a href="#lkpd">LKPD</a><br>
+          <a href="#kuis">Kuis</a>
+        </p>
+      </div>
+      <div>
+        <h4>Konteks Lokal</h4>
+        <p style="font-size:.9rem">Getuk Kopyor · Sate Sapi Suruh · Ronde Jago · Tumpang Koyor · Enting-enting Gepuk · Batik Tegalrejo · Taman Cengklik · Kampung Budaya Kalitaman · Masjid Kauman · Alun-alun Pancasila</p>
+      </div>
+      <div>
+        <h4>Catatan Teknis</h4>
+        <p style="font-size:.9rem">Satu berkas HTML mandiri — tanpa pustaka eksternal, tanpa internet. Grafik digambar dengan SVG murni dan algoritma <i>half-plane clipping</i>. Jawaban LKPD tersimpan di peramban (<span class="mono">localStorage</span>) perangkat masing-masing.</p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 — Media Pembelajaran Matematika. Bebas digunakan untuk keperluan pendidikan.</span>
+      <span>Dibuat untuk siswa Kelas X · Fase E · Kurikulum Merdeka</span>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+
+<script>
+"use strict";
+/* ==========================================================================
+   0. UTILITAS
+   ========================================================================== */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const fmt = n => {
+  if (!isFinite(n)) return "∞";
+  const r = Math.round(n*1e6)/1e6;
+  return String(r);
+};
+const fmtP = p => "(" + fmt(p[0]) + ", " + fmt(p[1]) + ")";
+const money = n => "Rp" + Number(n).toLocaleString("id-ID");
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ==========================================================================
+   1. PARSER PERTIDAKSAMAAN LINEAR DUA VARIABEL
+   ========================================================================== */
+const OP_MAP = {
+  "<=":"le", "≤":"le", "=<":"le",
+  ">=":"ge", "≥":"ge", "=>":"ge",
+  "<":"lt", ">":"gt", "=":"eq"
+};
+const NUM = "(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:\\/(?:\\d+(?:\\.\\d+)?|\\.\\d+))?";   // 2 | 2.5 | .5 | 1/2
+const TERM = "(?:" + NUM + "[xy]?|[xy])";
+const EXPR_RE = new RegExp("^[+-]?" + TERM + "(?:[+-]" + TERM + ")*$", "i");
+
+function parseSide(s){
+  s = String(s).trim()
+      .replace(/[−–—]/g,"-").replace(/≤/g,"<=").replace(/≥/g,">=")
+      .replace(/\*/g," ").replace(/\s+/g,"")
+      .replace(/(\d)([xy])/gi,"$1*$2");
+  if(!s || !EXPR_RE.test(s)) return null;
+  let a=0,b=0,k=0;
+  const re = /([+-]?)((?:\d+(?:\.\d+)?|\.\d+)(?:\/(?:\d+(?:\.\d+)?|\.\d+))?)?\*?([xy]?)/gi;
+  let m;
+  while((m = re.exec(s)) !== null){
+    if(m.index === re.lastIndex) re.lastIndex++;
+    if(!m[0]) continue;
+    const sign = m[1] === "-" ? -1 : 1;
+    let coef;
+    if(!m[2]) coef = 1;
+    else if(m[2].includes("/")){ const [p,q]=m[2].split("/"); coef = parseFloat(p)/parseFloat(q); }
+    else coef = parseFloat(m[2]);
+    const v = (m[3]||"").toLowerCase();
+    if(v === "x") a += sign*coef;
+    else if(v === "y") b += sign*coef;
+    else k += sign*coef;
+  }
+  return {a,b,k};
+}
+/* parse lengkap → {a,b,c,type} dengan makna  a·x + b·y  (≤|<|≥|>|=)  c
+   opts.allowBare = true → ekspresi tanpa tanda (mis. "10000x + 5000y") dibaca sebagai "= 0" */
+function parseIneq(raw, opts){
+  opts = opts || {};
+  if(typeof raw !== "string") return null;
+  let s = raw.replace(/[−–—]/g,"-").replace(/≤/g,"<=").replace(/≥/g,">=").replace(/\s+/g," ");
+  s = s.replace(/^f\s*\(\s*x\s*,?\s*y?\s*\)\s*=?\s*/i,"")   // f(x,y) =
+       .replace(/^f\s*=?\s*/i,"")                            // f =
+       .replace(/^z\s*=?\s*/i,"");                           // z =
+  if(!s) return null;
+  if(/[(){}\[\]^]/.test(s)) return null;                     // bentuk tak didukung
+  const mo = s.match(/(<=|>=|=<|=>|<|>|=)/);
+  let op, L, R;
+  if(mo){
+    op = OP_MAP[mo[1]];
+    const idx = s.indexOf(mo[1]);
+    L = s.slice(0, idx); R = s.slice(idx + mo[1].length);
+  } else {
+    if(!opts.allowBare) return null;
+    op = "eq"; L = s; R = "0";
+  }
+  const pl = parseSide(L); if(!pl) return null;
+  const pr = parseSide(R); if(!pr) return null;
+  const a = pl.a - pr.a, b = pl.b - pr.b, c = pr.k - pl.k;
+  if(Math.abs(a) < 1e-12 && Math.abs(b) < 1e-12) return null;   // tidak memuat variabel
+  return {a,b,c,type:op,raw:String(raw).trim()};
+}
+const satisfies = (ineq,x,y) => {
+  const v = ineq.a*x + ineq.b*y - ineq.c;
+  switch(ineq.type){
+    case "le": return v <= 1e-9;
+    case "lt": return v < -1e-9;
+    case "ge": return v >= -1e-9;
+    case "gt": return v > 1e-9;
+    case "eq": return Math.abs(v) <= 1e-9;
+  }
+  return false;
+};
+const isSolid = t => (t === "le" || t === "ge" || t === "eq");
+const opSym = t => ({le:"≤",lt:"<",ge:"≥",gt:">",eq:"="}[t]||"?");
+const numU = n => String(Math.round(n*1e6)/1e6).replace(/-/g,"−");
+function term(v, name, first){
+  if(Math.abs(v) < 1e-12) return "";
+  const sign = v < 0 ? (first ? "−" : " − ") : (first ? "" : " + ");
+  const av = Math.abs(v);
+  return sign + (Math.abs(av-1) < 1e-12 ? "" : numU(av)) + name;
+}
+function pretty(ineq){
+  let s = term(ineq.a,"x",true);
+  s += term(ineq.b,"y",s === "");
+  if(s === "") s = "0";
+  return s + " " + opSym(ineq.type) + " " + numU(ineq.c);
+}
+function splitSystem(text){
+  return String(text).split(/[\n;]+|,(?=\s*[-\d(xy])/i)
+    .map(x=>x.trim()).filter(Boolean);
+}
+/* pembacaan angka longgar: terima 270000 | 270.000 | 270,000 | Rp 270.000 | 3.5 */
+function parseNumLoose(raw){
+  let s = String(raw).trim().replace(/[^\d.,\-]/g,"");
+  if(!s) return NaN;
+  const hasC = s.includes(","), hasD = s.includes(".");
+  if(hasC && hasD){
+    if(s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g,"").replace(/,/g,".");
+    else s = s.replace(/,/g,"");
+  } else if(hasC){
+    s = /,\d{1,2}$/.test(s) ? s.replace(",",".") : s.replace(/,/g,"");
+  } else if(hasD){
+    if(/\.\d{3}$/.test(s) && !/\.\d{1,2}$/.test(s)) s = s.replace(/\./g,"");
+  }
+  return parseFloat(s);
+}
+
+/* ==========================================================================
+   2. GEOMETRI — clipping half-plane (Sutherland–Hodgman)
+   ========================================================================== */
+function clipPoly(poly, ineq){
+  const f = p => ineq.a*p[0] + ineq.b*p[1] - ineq.c;
+  const keep = v => {
+    switch(ineq.type){
+      case "le": return v <= 1e-9;
+      case "lt": return v <= 1e-9;      // batas diperlakukan inklusif utk geometri
+      case "ge": return v >= -1e-9;
+      case "gt": return v >= -1e-9;
+      case "eq": return Math.abs(v) <= 1e-9;
+    }
+    return false;
+  };
+  const out=[];
+  if(poly.length<3) return out;
+  for(let i=0;i<poly.length;i++){
+    const A=poly[i], B=poly[(i+1)%poly.length];
+    const fa=f(A), fb=f(B), ka=keep(fa), kb=keep(fb);
+    if(ka) out.push(A);
+    if(ka!==kb){
+      const t = fa/(fa-fb);
+      out.push([A[0]+t*(B[0]-A[0]), A[1]+t*(B[1]-A[1])]);
+    }
+  }
+  // rapikan titik duplikat
+  const clean=[];
+  for(const p of out){
+    const last = clean[clean.length-1];
+    if(!last || Math.hypot(last[0]-p[0], last[1]-p[1]) > 1e-7) clean.push(p);
+  }
+  if(clean.length>1){
+    const f0=clean[0], fl=clean[clean.length-1];
+    if(Math.hypot(f0[0]-fl[0], f0[1]-fl[1]) < 1e-7) clean.pop();
+  }
+  return clean;
+}
+function regionOf(list, R){
+  let poly = [[-R,-R],[R,-R],[R,R],[-R,R]];
+  for(const iq of list) poly = clipPoly(poly, iq);
+  return poly;
+}
+function polyArea(p){
+  let s=0;
+  for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length]; s += a[0]*b[1]-b[0]*a[1];}
+  return Math.abs(s)/2;
+}
+/* garis perpotongan dua pertidaksamaan */
+function intersectLines(i1,i2){
+  const d = i1.a*i2.b - i2.a*i1.b;
+  if(Math.abs(d) < 1e-10) return null;
+  return [(i1.c*i2.b - i2.c*i1.b)/d, (i1.a*i2.c - i2.a*i1.c)/d];
+}
+
+/* ==========================================================================
+   3. MESIN GRAFIK (SVG)
+   ========================================================================== */
+const PALETTE = ["#0d9488","#f59e0b","#be185d","#2563eb","#7c3aed","#dc2626","#059669","#d97706"];
+const REGION_FILL = "rgba(13,148,136,.30)";
+
+function hexToRgba(hex,al){
+  const h = hex.replace("#","");
+  const n = parseInt(h.length===3 ? h.split("").map(c=>c+c).join("") : h, 16);
+  return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${al})`;
+}
+
+class Plot {
+  constructor(host, opt={}){
+    this.host = typeof host === "string" ? $(host) : host;
+    this.size = opt.size || 640;
+    this.pad  = opt.pad  || 34;
+    this.R    = opt.range || 10;
+    this.ineqs = [];
+    this.testPoint = null;
+    this.clickable = opt.clickable !== false;
+    this.onPick = opt.onPick || null;
+    this.showRegion = opt.showRegion !== false;
+    this.compact = !!opt.compact;
+    this.svg = null;
+    this.build();
+  }
+  build(){
+    const S = this.size, P = this.pad;
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns,"svg");
+    svg.setAttribute("viewBox",`0 0 ${S} ${S}`);
+    svg.setAttribute("role","img");
+    svg.setAttribute("aria-label","Grafik daerah penyelesaian");
+    this.host.innerHTML = "";
+    this.host.appendChild(svg);
+    this.svg = svg;
+    if(this.clickable){
+      svg.addEventListener("click", e => {
+        const pt = svg.createSVGPoint();
+        pt.x = e.clientX; pt.y = e.clientY;
+        const ctm = svg.getScreenCTM();
+        if(!ctm) return;
+        const loc = pt.matrixTransform(ctm.inverse());
+        const w = this.toWorld(loc.x, loc.y);
+        const step = this.R > 14 ? 1 : 0.5;
+        const sx = Math.round(w[0]/step)*step, sy = Math.round(w[1]/step)*step;
+        this.testPoint = [sx, sy];
+        this.render();
+        if(this.onPick) this.onPick([sx,sy]);
+      });
+    }
+    this.render();
+  }
+  sx(x){ const S=this.size,P=this.pad; return P + (x + this.R)/(2*this.R) * (S-2*P); }
+  sy(y){ const S=this.size,P=this.pad; return P + (this.R - y)/(2*this.R) * (S-2*P); }
+  toWorld(px,py){ const S=this.size,P=this.pad;
+    return [ (px-P)/(S-2*P)*(2*this.R) - this.R, this.R - (py-P)/(S-2*P)*(2*this.R) ]; }
+  setIneqs(list){ this.ineqs = list.filter(Boolean); this.render(); }
+  zoom(dir){
+    this.R = dir>0 ? Math.max(2, this.R/1.4) : Math.min(200, this.R*1.4);
+    this.render();
+  }
+  reset(){ this.R = 10; this.render(); }
+  stepFor(){
+    if(this.R<=4) return 1;
+    if(this.R<=12) return 1;
+    if(this.R<=30) return 5;
+    if(this.R<=70) return 10;
+    return 20;
+  }
+  render(){
+    const S=this.size,P=this.pad,ns="http://www.w3.org/2000/svg";
+    const svg=this.svg;
+    svg.innerHTML="";
+    const g=(tag,attrs,parent=svg)=>{const e=document.createElementNS(ns,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e;};
+    const dark = document.documentElement.getAttribute("data-theme")==="dark";
+    const axisC = dark ? "#7fa79f" : "#9ab3ae";
+    const gridC = dark ? "#1d302c" : "#e7efed";
+    const txtC  = dark ? "#9fb8b3" : "#6b8781";
+
+    /* --- grid --- */
+    const st = this.stepFor();
+    for(let v=-Math.floor(this.R/st)*st; v<=this.R; v+=st){
+      if(Math.abs(v)>this.R) continue;
+      const gx=g("line",{x1:this.sx(v),y1:P,x2:this.sx(v),y2:S-P,stroke:gridC,"stroke-width":1});
+      const gy=g("line",{x1:P,y1:this.sy(v),x2:S-P,y2:this.sy(v),stroke:gridC,"stroke-width":1});
+      if(Math.abs(v)<1e-9){ gx.setAttribute("stroke","none"); gy.setAttribute("stroke","none"); }
+    }
+    /* --- bingkai --- */
+    g("rect",{x:P,y:P,width:S-2*P,height:S-2*P,fill:"none",stroke:gridC,"stroke-width":1});
+
+    /* --- sumbu --- */
+    g("line",{x1:P,y1:this.sy(0),x2:S-P,y2:this.sy(0),stroke:axisC,"stroke-width":1.8});
+    g("line",{x1:this.sx(0),y1:P,x2:this.sx(0),y2:S-P,stroke:axisC,"stroke-width":1.8});
+    // panah sumbu
+    g("path",{d:`M ${S-P} ${this.sy(0)} l -9 -4.5 l 0 9 z`,fill:axisC});
+    g("path",{d:`M ${this.sx(0)} ${P} l -4.5 9 l 9 0 z`,fill:axisC});
+    const tX=g("text",{x:S-P-4,y:this.sy(0)-9,"text-anchor":"end","font-size":"15","font-weight":"700",fill:txtC,"font-family":"var(--mono)"}); tX.textContent="x";
+    const tY=g("text",{x:this.sx(0)+10,y:P+14,"font-size":"15","font-weight":"700",fill:txtC,"font-family":"var(--mono)"}); tY.textContent="y";
+
+    /* --- label & ticks --- */
+    const lblStep = st;
+    for(let v=-Math.floor(this.R/lblStep)*lblStep; v<=this.R; v+=lblStep){
+      if(Math.abs(v)>this.R || Math.abs(v)<1e-9) continue;
+      if(!this.compact){
+        g("line",{x1:this.sx(v),y1:this.sy(0)-4,x2:this.sx(v),y2:this.sy(0)+4,stroke:axisC,"stroke-width":1.4});
+        g("line",{x1:this.sx(0)-4,y1:this.sy(v),x2:this.sx(0)+4,y2:this.sy(v),stroke:axisC,"stroke-width":1.4});
+      }
+      const tx=g("text",{x:this.sx(v),y:this.sy(0)+16,"text-anchor":"middle","font-size":this.compact?10:12,fill:txtC});
+      tx.textContent=fmt(v);
+      const ty=g("text",{x:this.sx(0)-7,y:this.sy(v)+4,"text-anchor":"end","font-size":this.compact?10:12,fill:txtC});
+      ty.textContent=fmt(v);
+    }
+    if(!this.compact){
+      const o=g("text",{x:this.sx(0)-7,y:this.sy(0)+16,"text-anchor":"end","font-size":12,fill:txtC}); o.textContent="0";
+    }
+
+    if(this.ineqs.length===0) return;
+
+    /* --- DAERAH PENYELESAIAN (irisan) --- */
+    const poly = this.showRegion ? regionOf(this.ineqs, this.R) : [];
+    if(poly.length>=3){
+      const d = poly.map((p,i)=> (i?"L":"M")+this.sx(p[0]).toFixed(2)+" "+this.sy(p[1]).toFixed(2)).join(" ")+" Z";
+      g("path",{d,fill:REGION_FILL,stroke:"#0f766e","stroke-width":1.6,"stroke-linejoin":"round"});
+    }
+
+    /* --- garis tiap pertidaksamaan + arsiran tipis per pertidaksamaan --- */
+    this.ineqs.forEach((iq,i)=>{
+      const col = PALETTE[i%PALETTE.length];
+      // arsiran tipis setengah bidang (hanya bila tidak menampilkan region gabungan)
+      if(!this.showRegion){
+        const hp = clipPoly([[-this.R,-this.R],[this.R,-this.R],[this.R,this.R],[-this.R,this.R]], iq);
+        if(hp.length>=3){
+          const d = hp.map((p,k)=>(k?"L":"M")+this.sx(p[0]).toFixed(2)+" "+this.sy(p[1]).toFixed(2)).join(" ")+" Z";
+          g("path",{d,fill:hexToRgba(col,.16),stroke:"none"});
+        }
+      }
+      const seg = this.lineSegment(iq);
+      if(!seg) return;
+      g("line",{
+        x1:this.sx(seg[0][0]),y1:this.sy(seg[0][1]),x2:this.sx(seg[1][0]),y2:this.sy(seg[1][1]),
+        stroke:col,"stroke-width":2.8,"stroke-linecap":"round",
+        "stroke-dasharray": isSolid(iq.type) ? "none" : "9 7"
+      });
+      // label kecil di ujung garis
+      if(!this.compact){
+        const lx = this.sx(seg[1][0]), ly = this.sy(seg[1][1]);
+        const bg=g("rect",{x:lx-46,y:ly-26,width:44,height:17,rx:5,fill:col,opacity:.92});
+        const t=g("text",{x:lx-24,y:ly-13,"text-anchor":"middle","font-size":"10.5","font-weight":"800",fill:"#fff"});
+        t.textContent = "P"+(i+1);
+      }
+    });
+
+    /* --- titik pojok --- */
+    if(poly.length>=3){
+      poly.forEach(p=>{
+        g("circle",{cx:this.sx(p[0]),cy:this.sy(p[1]),r:4.6,fill:"#fff",stroke:"#0f766e","stroke-width":2.4});
+        if(!this.compact){
+          const label = fmtP(p);
+          const dx = p[0]>=0 ? 9 : -9, anchor = p[0]>=0 ? "start":"end";
+          const t=g("text",{x:this.sx(p[0])+dx,y:this.sy(p[1])-8,"text-anchor":anchor,"font-size":"11.5","font-weight":"700",fill:"#0f766e"});
+          t.textContent=label;
+        }
+      });
+    }
+
+    /* --- titik uji --- */
+    if(this.testPoint){
+      const [x,y]=this.testPoint;
+      const okAll = this.ineqs.every(iq=>satisfies(iq,x,y));
+      g("line",{x1:this.sx(x),y1:P,x2:this.sx(x),y2:S-P,stroke:"#be185d","stroke-width":1,"stroke-dasharray":"4 5",opacity:.5});
+      g("line",{x1:P,y1:this.sy(y),x2:S-P,y2:this.sy(y),stroke:"#be185d","stroke-width":1,"stroke-dasharray":"4 5",opacity:.5});
+      g("circle",{cx:this.sx(x),cy:this.sy(y),r:7,fill:"#be185d",stroke:"#fff","stroke-width":2.4});
+      const t=g("text",{x:this.sx(x)+12,y:this.sy(y)+18,"font-size":"12","font-weight":"800",fill:"#be185d"});
+      t.textContent = fmtP([x,y]) + (okAll?" ✔":" ✘");
+    }
+  }
+  lineSegment(iq){
+    const R=this.R, eps=1e-9;
+    const pts=[];
+    if(Math.abs(iq.b)>eps){
+      const y1=(iq.c - iq.a*(-R))/iq.b, y2=(iq.c - iq.a*(R))/iq.b;
+      pts.push([-R,y1],[R,y2]);
+    } else if(Math.abs(iq.a)>eps){
+      const x=iq.c/iq.a;
+      pts.push([x,-R],[x,R]);
+    } else return null;
+    const inside=p=>Math.abs(p[0])<=R+eps && Math.abs(p[1])<=R+eps;
+    const fin=pts.filter(inside);
+    if(fin.length<2){
+      // potong dengan batas bidang bila perlu
+      const clip=[[-R,-R],[R,-R],[R,R],[-R,R]];
+      const f=p=>iq.a*p[0]+iq.b*p[1]-iq.c;
+      const out=[];
+      for(let i=0;i<4;i++){
+        const A=clip[i],B=clip[(i+1)%4],fa=f(A),fb=f(B);
+        if(Math.abs(fa)<eps) out.push(A);
+        if(fa*fb<0){const t=fa/(fa-fb);out.push([A[0]+t*(B[0]-A[0]),A[1]+t*(B[1]-A[1])]);}
+      }
+      if(out.length>=2) return [out[0],out[out.length-1]];
+      return null;
+    }
+    return fin;
+  }
+  region(){ return regionOf(this.ineqs, this.R); }
+}
+
+/* ==========================================================================
+   4. TEMA, NAV, SCROLL
+   ========================================================================== */
+(function theme(){
+  const btn=$("#themeBtn");
+  const saved = (()=>{try{return localStorage.getItem("sptldv-theme")}catch(e){return null}})();
+  if(saved) document.documentElement.setAttribute("data-theme",saved);
+  btn.addEventListener("click",()=>{
+    const cur = document.documentElement.getAttribute("data-theme")==="dark" ? "light":"dark";
+    document.documentElement.setAttribute("data-theme",cur);
+    try{localStorage.setItem("sptldv-theme",cur)}catch(e){}
+    redrawAll();
+  });
+})();
+$("#burger").addEventListener("click",()=>$("#navlinks").classList.toggle("open"));
+$$("#navlinks a").forEach(a=>a.addEventListener("click",()=>$("#navlinks").classList.remove("open")));
+
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100;
+  $("#scrollbar").style.width=p+"%";
+  $("#toTop").classList.toggle("show", h.scrollTop>520);
+},{passive:true});
+$("#toTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* accordion */
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".acc > button");
+  if(b) b.parentElement.classList.toggle("open");
+});
+/* tabs */
+$$(".tabs").forEach(tabs=>{
+  tabs.addEventListener("click",e=>{
+    const b=e.target.closest("button[data-tab]"); if(!b) return;
+    $$("button",tabs).forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    const id=b.dataset.tab;
+    $$(".tabpanel").forEach(p=>p.classList.toggle("active", p.id===id));
+  });
+});
+/* reveal on scroll — hanya aktif jika IntersectionObserver tersedia */
+function revealAll(){ $$(".reveal").forEach(el=>el.classList.add("in")); }
+try{
+  if("IntersectionObserver" in window){
+    let ioFired=false;
+    const io = new IntersectionObserver(es=>{
+      ioFired=true;
+      es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} });
+    },{threshold:.08, rootMargin:"0px 0px -6% 0px"});
+    document.documentElement.classList.add("jsanim");
+    $$(".reveal").forEach(el=>io.observe(el));
+    // jaring pengaman: bila IO tidak pernah memicu (mis. diblokir), tampilkan semua
+    setTimeout(()=>{ if(!ioFired){ document.documentElement.classList.remove("jsanim"); revealAll(); } }, 2500);
+  } else { revealAll(); }
+}catch(err){ document.documentElement.classList.remove("jsanim"); revealAll(); }
+/* scrollspy */
+const spy = new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      $$("#navlinks a").forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+en.target.id));
+    }
+  });
+},{rootMargin:"-45% 0px -50% 0px"});
+["materi","langkah","simulasi","grafik","lkpd","latihan","kuis"].forEach(id=>{const el=$("#"+id); if(el) spy.observe(el);});
+
+/* ==========================================================================
+   5. SIMULASI LANGKAH DEMI LANGKAH
+   ========================================================================== */
+const sim = {
+  plot:null, range:10, ineq:null, timer:null
+};
+function simInit(){
+  sim.plot = new Plot("#simPlot",{range:10,clickable:false,showRegion:false});
+  $("#simInput").addEventListener("input",()=>{ /* live label */
+    const p=parseIneq($("#simInput").value);
+    $("#simLabel").textContent = p ? pretty(p) : "…";
+  });
+  $("#simInput").addEventListener("keydown",e=>{ if(e.key==="Enter") simRun(); });
+  $$("#simChips .chip").forEach(c=>c.addEventListener("click",()=>{
+    $("#simInput").value=c.dataset.v; simRun();
+  }));
+  $("#simRun").addEventListener("click",simRun);
+  $("#simReset").addEventListener("click",()=>{
+    sim.ineq=null; sim.plot.ineqs=[]; sim.plot.testPoint=null; sim.plot.render();
+    $("#simSteps").innerHTML=""; $("#simFb").className="fb"; $("#simFb").textContent="";
+  });
+  $$("[data-simzoom]").forEach(b=>b.addEventListener("click",()=>sim.plot.zoom(b.dataset.simzoom==="in"?1:-1)));
+  simRun();
+}
+function simRun(){
+  const raw=$("#simInput").value;
+  const iq=parseIneq(raw);
+  const fb=$("#simFb");
+  fb.className="fb show";
+  if(!iq){
+    fb.classList.add("no");
+    fb.textContent="✘ Kalimat belum dikenali. Periksa tanda ketidaksamaan dan variabelnya (contoh: 2x + y <= 8).";
+    return;
+  }
+  fb.classList.add("ok");
+  fb.textContent="✔ Terbaca: "+pretty(iq);
+  sim.ineq=iq;
+  sim.plot.ineqs=[iq];
+
+  // pilih titik uji
+  let tp=[0,0];
+  if(Math.abs(iq.c)<1e-9) tp = Math.abs(iq.a)>1e-9 ? [1,0] : [0,1];
+  const ok=satisfies(iq,tp[0],tp[1]);
+  sim.plot.testPoint=tp;
+
+  // titik potong
+  const xInt = Math.abs(iq.a)>1e-9 ? [iq.c/iq.a,0] : null;
+  const yInt = Math.abs(iq.b)>1e-9 ? [0,iq.c/iq.b] : null;
+  let cutTxt;
+  if(xInt&&yInt) cutTxt = `memotong sumbu-X di <b>${fmtP(xInt)}</b> dan sumbu-Y di <b>${fmtP(yInt)}</b>`;
+  else if(xInt) cutTxt = `garis <b>tegak</b> (sejajar sumbu-Y), memotong sumbu-X di <b>${fmtP(xInt)}</b>`;
+  else cutTxt = `garis <b>datar</b> (sejajar sumbu-X), memotong sumbu-Y di <b>${fmtP(yInt)}</b>`;
+
+  const nilaiUji = iq.a*tp[0]+iq.b*tp[1];
+  const steps=[
+    ["Bentuk yang terbaca",
+     `Kalimat <span class="math">${esc(raw)}</span> dikenali sebagai pertidaksamaan linear dua variabel dengan bentuk baku:`,
+     `<span class="math">${esc(pretty(iq))}</span> &nbsp;→&nbsp; a = ${fmt(iq.a)}, b = ${fmt(iq.b)}, c = ${fmt(iq.c)}`],
+    ["Garis batas",
+     `Ganti tanda <b>${opSym(iq.type)}</b> dengan <b>=</b>. Karena tandanya ${isSolid(iq.type)?"<b>≤ atau ≥</b> maka garis digambar <b>tegas/penuh</b> (titik pada garis termasuk penyelesaian)":"<b>&lt; atau &gt;</b> maka garis digambar <b>putus-putus</b> (titik pada garis TIDAK termasuk penyelesaian)"}.`,
+     `<span class="math">${fmt(iq.a)}x + ${fmt(iq.b)}y = ${fmt(iq.c)}</span>`],
+    ["Titik potong sumbu",
+     `Garis tersebut ${cutTxt}. Hubungkan titik-titik itu untuk menggambar garis batasnya.`,
+     xInt&&yInt ? `<span class="math">y=0 → x=${fmt(iq.c/iq.a)}</span> &nbsp; <span class="math">x=0 → y=${fmt(iq.c/iq.b)}</span>` : ""],
+    ["Titik uji",
+     Math.abs(iq.c)<1e-9
+       ? `Karena garis melalui titik asal, O(0,0) tidak dapat dipakai. Dipilih titik uji <b>${fmtP(tp)}</b>.`
+       : `Dipilih titik paling sederhana yang tidak terletak pada garis, yaitu <b>${fmtP(tp)}</b>.`,
+     `<span class="math">${fmt(iq.a)}(${fmt(tp[0])}) + ${fmt(iq.b)}(${fmt(tp[1])}) = ${fmt(nilaiUji)}</span>`],
+    ["Membandingkan dengan ruas kanan",
+     `Diperoleh <b>${fmt(nilaiUji)}</b> ${ok?"<b>memenuhi</b>":"<b>tidak memenuhi</b>"} pertidaksamaan <span class="math">${esc(pretty(iq))}</span>.`,
+     `<span class="math">${fmt(nilaiUji)} ${opSym(iq.type)} ${fmt(iq.c)} → ${ok?"BENAR ✔":"SALAH ✘"}</span>`],
+    ["Daerah yang diarsir",
+     ok ? `Karena pernyataan <b>benar</b>, daerah yang memuat titik uji <b>${fmtP(tp)}</b> diarsir (pada gambar: wilayah hijau).`
+        : `Karena pernyataan <b>salah</b>, yang diarsir adalah daerah yang <b>tidak</b> memuat titik uji, yaitu sisi sebaliknya dari garis.`,
+     `Semua titik (x, y) pada wilayah hijau memenuhi ${esc(pretty(iq))}.`],
+    ["Kesimpulan",
+     `Daerah penyelesaian pertidaksamaan <b>${esc(pretty(iq))}</b> telah digambar di sebelah kanan. `,
+     iq.type==="le"||iq.type==="ge"
+       ? `<span class="math">Garis batas termasuk penyelesaian (tegas)</span>`
+       : `<span class="math">Garis batas tidak termasuk (putus-putus)</span>`]
+  ];
+  const box=$("#simSteps"); box.innerHTML="";
+  steps.forEach((s,i)=>{
+    const d=document.createElement("div");
+    d.className="step";
+    d.innerHTML=`<h4>${s[0]}</h4><p>${s[1]}</p>${s[2]?`<div style="margin-top:6px">${s[2]}</div>`:""}`;
+    box.appendChild(d);
+  });
+  sim.plot.render();
+  if(sim.timer) clearInterval(sim.timer);
+  let i=0;
+  const nodes=$$(".step",box);
+  sim.timer=setInterval(()=>{
+    if(i>=nodes.length){ clearInterval(sim.timer); sim.timer=null; return; }
+    nodes[i].classList.add("on");
+    nodes[i].scrollIntoView({block:"nearest",behavior:"smooth"});
+    i++;
+  },420);
+}
+
+/* ==========================================================================
+   6. ALAT GRAFIK UTAMA
+   ========================================================================== */
+const PRESETS=[
+  {n:"Contoh buku — 2x+y≤8; 4x+2y≤20; x,y≥0", l:["2x + y <= 8","4x + 2y <= 20","x >= 0","y >= 0"]},
+  {n:"Klasik — x+y≤6; 2x+y≤8; x,y≥0",          l:["x + y <= 6","2x + y <= 8","x >= 0","y >= 0"]},
+  {n:"x+2y≤10; 3x+y≤15; x,y≥0",                l:["x + 2y <= 10","3x + y <= 15","x >= 0","y >= 0"]},
+  {n:"y ≥ x+1 dan y ≤ −x+5",                   l:["y >= x + 1","y <= -x + 5"]},
+  {n:"y > 2x − 1 dan y ≤ −x + 6",              l:["y > 2x - 1","y <= -x + 6"]},
+  {n:"Segiempat — 0≤x≤4, 0≤y≤3",               l:["x >= 0","x <= 4","y >= 0","y <= 3"]},
+  {n:"Daerah tak terbatas — x−y≤2; x≥0; y≥0",  l:["x - y <= 2","x >= 0","y >= 0"]},
+  {n:"Himpunan kosong — x+y≥8; 2x+2y≤10",      l:["x + y >= 8","2x + 2y <= 10"]},
+  {n:"Getuk kopyor (LKPD 1)",                  l:["2x + y <= 8","4x + 2y <= 20","x >= 0","y >= 0"]},
+  {n:"Ronde jago (LKPD 2)",                    l:["3x + 2y <= 60","x + y <= 20","x >= 0","y >= 0"]},
+  {n:"Batik Tegalrejo (LKPD 3)",               l:["2x + y <= 20","x + 3y <= 30","x >= 0","y >= 0"]},
+  {n:"Paket wisata Salatiga (LKPD 4)",         l:["x + y <= 4","2x + y <= 6","y > x","x >= 1"]}
+];
+const MINI={
+  m1:{l:["2x + y <= 8","4x + 2y <= 20","x >= 0","y >= 0"],range:10,host:"#mini1",reg:"#mini1Region"},
+  m2:{l:["3x + 2y <= 60","x + y <= 20","x >= 0","y >= 0"],range:26,host:"#mini2",reg:"#mini2Region"},
+  m3:{l:["2x + y <= 20","x + 3y <= 30","x >= 0","y >= 0"],range:18,host:"#mini3",reg:"#mini3Region"},
+  m4:{l:["x + y <= 4","2x + y <= 6","y > x","x >= 1"],range:8,host:"#mini4",reg:"#mini4Region"}
+};
+const miniPlots={};
+
+const tool = {plot:null, rows:[]};
+
+function renderIqList(){
+  const box=$("#iqList"); box.innerHTML="";
+  tool.rows.forEach((r,i)=>{
+    const div=document.createElement("div");
+    div.className="iqrow"+(r.parsed?"":" err");
+    const col=PALETTE[i%PALETTE.length];
+    div.innerHTML=`
+      <span class="dot" style="background:${col}"></span>
+      <input type="text" value="${esc(r.raw)}" placeholder="mis. 2x + y <= 8" spellcheck="false" autocomplete="off" aria-label="Pertidaksamaan ${i+1}">
+      <span class="row tight">
+        <span style="font-size:.78rem;color:var(--ink-3);min-width:112px;text-align:right" class="pv"></span>
+        <button class="del" title="Hapus" aria-label="Hapus baris">✕</button>
+      </span>`;
+    const inp=$("input",div);
+    const pv=$(".pv",div);
+    const sync=()=>{
+      r.raw=inp.value;
+      r.parsed=parseIneq(inp.value);
+      div.classList.toggle("err", !r.parsed && inp.value.trim()!=="");
+      pv.textContent = r.parsed ? pretty(r.parsed) : (inp.value.trim()===""?"—":"tidak dikenali");
+      pv.style.color = r.parsed ? "var(--ink-3)" : "var(--err)";
+      updateMain();
+    };
+    inp.addEventListener("input",sync);
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter") $("#addIq").click(); });
+    $(".del",div).addEventListener("click",()=>{ tool.rows.splice(i,1); renderIqList(); });
+    box.appendChild(div);
+    sync();
+  });
+}
+function setRows(list){
+  tool.rows = list.map(s=>({raw:s,parsed:parseIneq(s)}));
+  if(tool.rows.length===0) tool.rows=[{raw:"",parsed:null}];
+  renderIqList();
+}
+function currentIneqs(){ return tool.rows.map(r=>r.parsed).filter(Boolean); }
+
+function updateMain(){
+  const list=currentIneqs();
+  tool.plot.ineqs=list;
+  tool.plot.render();
+  const box=$("#mainRegion");
+  const tot=tool.rows.filter(r=>r.raw.trim()!=="").length;
+  const bad=tot-list.length;
+  if(list.length===0){
+    box.innerHTML=`<b>Belum ada pertidaksamaan.</b> Ketik minimal satu pertidaksamaan di kolom kiri, misalnya <span class="mono">2x + y &lt;= 8</span>.`;
+    return;
+  }
+  const poly=tool.plot.region();
+  let html=`<b>Sistem yang terbentuk:</b><div class="vlist" style="margin-bottom:8px">`;
+  list.forEach((iq,i)=>{ html+=`<span class="vtag" style="border-left:4px solid ${PALETTE[i%PALETTE.length]}">${esc(pretty(iq))}</span>`; });
+  html+=`</div>`;
+  if(bad>0) html+=`<div style="color:var(--err);font-weight:700;font-size:.86rem">⚠ ${bad} baris tidak dikenali dan diabaikan.</div>`;
+  if(poly.length<3 || polyArea(poly)<1e-6){
+    html+=`<div style="margin-top:8px"><b style="color:var(--err)">Daerah penyelesaian KOSONG</b> — tidak ada titik yang memenuhi semua pertidaksamaan sekaligus (biasanya karena dua garis sejajar yang berlawanan arah).</div>`;
+  } else {
+    html+=`<div style="margin-top:6px"><b>Titik pojok daerah penyelesaian</b> (${poly.length} titik):</div><div class="vlist">`;
+    poly.forEach(p=>html+=`<span class="vtag">${fmtP(p)}</span>`);
+    html+=`</div>`;
+    const onEdge = poly.some(p=>Math.abs(Math.abs(p[0])-tool.plot.R)<1e-6 || Math.abs(Math.abs(p[1])-tool.plot.R)<1e-6);
+    html+=`<div style="margin-top:8px;font-size:.87rem;color:var(--ink-2)">Luas daerah (dalam bidang tampak): <b>${fmt(polyArea(poly))}</b> satuan luas${onEdge?` · <i>sebagian daerah mungkin tak terbatas — perkecil tampilan (zoom out) untuk memastikan</i>`:""}</div>`;
+  }
+  box.innerHTML=html;
+}
+function toolInit(){
+  const sel=$("#presetSel");
+  PRESETS.forEach((p,i)=>{
+    const o=document.createElement("option"); o.value=i; o.textContent=p.n; sel.appendChild(o);
+  });
+  sel.addEventListener("change",()=>{ if(sel.value==="")return; setRows(PRESETS[+sel.value].l); });
+  tool.plot=new Plot("#mainPlot",{range:10,clickable:true,onPick:p=>{
+    $("#tpX").value=p[0]; $("#tpY").value=p[1]; showTestPoint();
+  }});
+  setRows(PRESETS[0].l);
+  $("#addIq").addEventListener("click",()=>{ if(tool.rows.length>=6)return; tool.rows.push({raw:"",parsed:null}); renderIqList(); $$("#iqList input").pop()?.focus(); });
+  $("#addNonNeg").addEventListener("click",()=>{
+    const has=s=>tool.rows.some(r=>{const p=r.parsed; return p && Math.abs(p.a-s[0])<1e-9&&Math.abs(p.b-s[1])<1e-9&&Math.abs(p.c)<1e-9&&(p.type==="ge");});
+    if(!has([1,0]) && tool.rows.length<6) tool.rows.push({raw:"x >= 0",parsed:parseIneq("x >= 0")});
+    if(!has([0,1]) && tool.rows.length<6) tool.rows.push({raw:"y >= 0",parsed:parseIneq("y >= 0")});
+    renderIqList();
+  });
+  $("#clearIq").addEventListener("click",()=>{ setRows([""]); tool.plot.testPoint=null; $("#tpResult").innerHTML=""; });
+  $$("[data-zoom]").forEach(b=>b.addEventListener("click",()=>tool.plot.zoom(b.dataset.zoom==="in"?1:-1)));
+  $("#zoomReset").addEventListener("click",()=>{tool.plot.reset();});
+  $("#tpBtn").addEventListener("click",showTestPoint);
+  $("#tpClear").addEventListener("click",()=>{tool.plot.testPoint=null;tool.plot.render();$("#tpResult").innerHTML="";});
+  ["tpX","tpY"].forEach(id=>$("#"+id).addEventListener("keydown",e=>{if(e.key==="Enter")showTestPoint();}));
+  updateMain();
+}
+function showTestPoint(){
+  const x=parseFloat($("#tpX").value), y=parseFloat($("#tpY").value);
+  if(!isFinite(x)||!isFinite(y)) return;
+  tool.plot.testPoint=[x,y]; tool.plot.render();
+  const list=currentIneqs();
+  if(list.length===0){ $("#tpResult").innerHTML=""; return; }
+  const res=list.map(iq=>({iq,ok:satisfies(iq,x,y)}));
+  const all=res.every(r=>r.ok);
+  let h=`<div class="tp ${all?"ok":"no"}"><b>Titik uji ${fmtP([x,y])}</b> — ${all?"✅ TERMASUK daerah penyelesaian sistem.":"❌ BUKAN penyelesaian sistem."}<ul>`;
+  res.forEach(r=>{
+    const v=r.iq.a*x+r.iq.b*y;
+    h+=`<li>${esc(pretty(r.iq))} → ${fmt(v)} ${opSym(r.iq.type)} ${fmt(r.iq.c)} : ${r.ok?"✔ benar":"✘ salah"}</li>`;
+  });
+  h+=`</ul></div>`;
+  $("#tpResult").innerHTML=h;
+}
+
+/* mini plots LKPD */
+function miniInit(){
+  Object.keys(MINI).forEach(k=>{
+    const cfg=MINI[k];
+    const list=cfg.l.map(parseIneq).filter(Boolean);
+    const p=new Plot(cfg.host,{range:cfg.range,clickable:true,compact:true,onPick:pt=>{
+      const ok=list.every(iq=>satisfies(iq,pt[0],pt[1]));
+      const box=$(cfg.reg);
+      const extra=document.createElement("div");
+      extra.className="tp "+(ok?"ok":"no");
+      extra.style.marginTop="10px";
+      let h=`<b>Titik uji ${fmtP(pt)}</b> — ${ok?"✅ berada DI DALAM daerah penyelesaian.":"❌ berada DI LUAR daerah penyelesaian."}<ul>`;
+      list.forEach(iq=>{const v=iq.a*pt[0]+iq.b*pt[1];h+=`<li>${esc(pretty(iq))} → ${fmt(v)} ${opSym(iq.type)} ${fmt(iq.c)} : ${satisfies(iq,pt[0],pt[1])?"✔":"✘"}</li>`;});
+      extra.innerHTML=h+"</ul>";
+      const prev=$(".tp",box); if(prev) prev.remove();
+      box.appendChild(extra);
+    }});
+    p.setIneqs(list);
+    miniPlots[k]=p;
+    // ringkasan region
+    const poly=p.region();
+    const box=$(cfg.reg);
+    if(poly.length>=3){
+      box.innerHTML=`<b>Titik pojok:</b> <span class="mono">${poly.map(fmtP).join(" · ")}</span>
+        <div style="font-size:.8rem;color:var(--ink-2);margin-top:4px">Klik sembarang titik pada grafik untuk mengujinya.</div>`;
+    } else {
+      box.innerHTML=`<b style="color:var(--err)">Daerah penyelesaian kosong.</b>`;
+    }
+    const wrap=box.closest(".plotwrap");
+    $$("[data-minizoom]",wrap).forEach(b=>b.addEventListener("click",()=>p.zoom(b.dataset.minizoom==="in"?1:-1)));
+  });
+}
+/* tombol "Coba di alat grafik" */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-copy]");
+  if(!b) return;
+  let list;
+  const v=b.dataset.copy;
+  if(v.startsWith("[")) list=JSON.parse(v);
+  else list=MINI[v].l;
+  setRows(list);
+  const sel=$("#presetSel"); sel.value="";
+  $("#grafik").scrollIntoView({behavior:"smooth"});
+});
+
+/* ==========================================================================
+   7. HERO PLOT
+   ========================================================================== */
+function heroInit(){
+  const p=new Plot("#heroPlot",{range:9,clickable:false,compact:true,size:420});
+  p.setIneqs(["2x + y <= 8","4x + 2y <= 20","x >= 0","y >= 0"].map(parseIneq).filter(Boolean));
+}
+
+/* ==========================================================================
+   8. LKPD — PENILAIAN & PENYIMPANAN
+   ========================================================================== */
+const LS_KEY="sptldv-lkpd-v1";
+function saveLKPD(){
+  const data={};
+  $$("[data-save]").forEach((el,i)=>data["s"+i]=el.value);
+  $$("[data-ans]").forEach((el,i)=>data["a"+i]=el.value);
+  $$(".lkpd input[type=radio]:checked,.lkpd input[type=checkbox]:checked").forEach(el=>{
+    data["c_"+el.name+"_"+el.value]=true;
+  });
+  try{ localStorage.setItem(LS_KEY,JSON.stringify(data)); }catch(e){}
+  $$(".savedflag").forEach(f=>{
+    f.classList.add("show");
+    clearTimeout(f.__t);
+    f.__t=setTimeout(()=>f.classList.remove("show"),1400);
+  });
+}
+function loadLKPD(){
+  let data; try{ data=JSON.parse(localStorage.getItem(LS_KEY)||"{}"); }catch(e){ data={}; }
+  if(!data) return;
+  $$("[data-save]").forEach((el,i)=>{ if(data["s"+i]!==undefined) el.value=data["s"+i]; });
+  $$("[data-ans]").forEach((el,i)=>{ if(data["a"+i]!==undefined) el.value=data["a"+i]; });
+  Object.keys(data).forEach(k=>{
+    if(k.startsWith("c_")){
+      const [,name,val]=k.split("_");
+      const el=$(`.lkpd input[name="${name}"][value="${val}"]`);
+      if(el) el.checked=true;
+    }
+  });
+  refreshOptStyles();
+}
+function refreshOptStyles(){
+  $$(".opt").forEach(o=>{
+    const i=$("input",o); if(!i) return;
+    o.classList.toggle("picked", i.checked);
+  });
+}
+document.addEventListener("change",e=>{ if(e.target.closest(".opt")) refreshOptStyles(); });
+document.addEventListener("input",e=>{ if(e.target.closest(".lkpd")) saveLKPD(); });
+
+/* --- pemeriksa jawaban --- */
+function sameIneq(u1,u2,strictSign=true){
+  if(!u1||!u2) return false;
+  if(strictSign && u1.type!==u2.type) return false;
+  // skala: u1 = k·u2
+  const k = Math.abs(u2.a)>1e-9 ? u1.a/u2.a : (Math.abs(u2.b)>1e-9 ? u1.b/u2.b : null);
+  if(k===null || Math.abs(k)<1e-9) return false;
+  return Math.abs(u1.a-k*u2.a)<1e-6 && Math.abs(u1.b-k*u2.b)<1e-6 && Math.abs(u1.c-k*u2.c)<1e-4;
+}
+function checkAnswer(el){
+  const spec=el.dataset.ans; if(!spec) return null;
+  const sep=spec.indexOf(":");
+  const kind=spec.slice(0,sep), payload=spec.slice(sep+1);
+  const val=(el.value||"").trim();
+  if(val==="") return {state:"empty"};
+  const bare = {allowBare:true};
+  if(kind==="num"){
+    const target=parseFloat(payload), got=parseNumLoose(val);
+    if(!isFinite(got)) return {state:"no",msg:"Tulis jawaban berupa angka."};
+    return {state: Math.abs(got-target) <= Math.max(1e-6, Math.abs(target)*1e-6) ? "ok":"no"};
+  }
+  if(kind==="ineq"){
+    const target=parseIneq(payload,bare), got=parseIneq(val,bare);
+    if(!got) return {state:"no",msg:"Format belum terbaca. Contoh penulisan: 2x + y <= 8"};
+    if(target.type==="eq"||got.type==="eq"){
+      const t={...target,type:"eq"}, g={...got,type:"eq"};
+      return {state: sameIneq(g,t,false) ? "ok":"no"};
+    }
+    if(!sameIneq(got,target,true)){
+      return {state:"no", msg: got.type===target.type ? "Koefisien/ruas kanan belum tepat." : "Perhatikan tanda ketidaksamaannya (≤, <, ≥, >)."};
+    }
+    return {state:"ok"};
+  }
+  if(kind==="system"){
+    const targets=splitSystem(payload).map(s=>parseIneq(s,bare)).filter(Boolean);
+    const gots=splitSystem(val).map(s=>parseIneq(s,bare)).filter(Boolean);
+    if(gots.length===0) return {state:"no",msg:"Belum ada pertidaksamaan yang terbaca."};
+    const missing=targets.filter(t=>!gots.some(g=>sameIneq(g,t,true)));
+    if(missing.length===0) return {state:"ok"};
+    return {state:"no",msg:"Belum lengkap. Yang masih kurang: "+missing.map(pretty).join(", ")};
+  }
+  if(kind==="feas"){
+    const list=MINI[payload].l.map(parseIneq).filter(Boolean);
+    const row=el.closest(".row");
+    const inputs=$$("input",row);
+    const x=parseNumLoose(inputs[0].value), y=parseNumLoose(inputs[1].value);
+    if(!isFinite(x)||!isFinite(y)) return {state:"empty"};
+    const ok=list.every(iq=>satisfies(iq,x,y));
+    if(!ok){
+      const bad=list.filter(iq=>!satisfies(iq,x,y)).map(pretty);
+      return {state:"no",msg:`Titik ${fmtP([x,y])} melanggar: ${bad.join(" dan ")}`};
+    }
+    if(el.dataset.diff){
+      const q=el.closest(".q");
+      const fi=$$("input",$$(".row",q)[0]);
+      if(Math.abs(parseNumLoose(fi[0].value)-x)<1e-9 && Math.abs(parseNumLoose(fi[1].value)-y)<1e-9)
+        return {state:"no",msg:"Kombinasi kedua sama dengan kombinasi pertama. Cari titik lain di dalam daerah."};
+    }
+    return {state:"ok"};
+  }
+  return null;
+}
+function checkMC(container){
+  const fb=$("[data-mc]",container);
+  if(!fb) return null;
+  const name=fb.dataset.mc, multi=fb.dataset.type==="multi";
+  const correct=fb.dataset.correct.split(",").map(Number);
+  const inputs=$$(`input[name="${name}"]`,container);
+  const picked=inputs.filter(i=>i.checked).map(i=>+i.value);
+  if(picked.length===0) return {fb,state:"empty"};
+  let ok;
+  if(multi){
+    ok = correct.length===picked.length && correct.every(c=>picked.includes(c));
+  } else ok = picked[0]===correct[0];
+  inputs.forEach(i=>{
+    const lab=i.closest(".opt");
+    lab.classList.remove("right","wrongpick");
+    if(correct.includes(+i.value)) lab.classList.add("right");
+    else if(i.checked) lab.classList.add("wrongpick");
+  });
+  return {fb,state: ok?"ok":"no"};
+}
+function setFb(fb,state,msg){
+  if(!fb) return;
+  fb.className="fb show "+(state==="ok"?"ok":state==="no"?"no":"");
+  fb.textContent = state==="ok" ? "✔ Benar!" : state==="no" ? "✘ "+(msg||"Belum tepat. Coba lagi — pakai bantuan grafik di atas.") : state==="essay" ? "💾 Jawaban uraian tersimpan (dinilai guru)." : "";
+  if(state==="essay"){ fb.className="fb show ok"; }
+}
+function checkContainer(container){
+  let scored=0, earned=0;
+  $$("[data-ans]",container).forEach(el=>{
+    const r=checkAnswer(el);
+    const fb=el.closest(".q")?.querySelector(".fb:not([data-mc]):not([data-essay])");
+    el.classList.remove("correct","wrong");
+    if(!r||r.state==="empty"){ if(fb) setFb(fb,""); return; }
+    if(r.state==="ok"){ el.classList.add("correct"); setFb(fb,"ok"); scored++; earned++; }
+    else { el.classList.add("wrong"); setFb(fb,"no",r.msg); scored++; }
+  });
+  const mcs=$$("[data-mc]",container);
+  mcs.forEach(fb=>{
+    const q=fb.closest(".q");
+    const r=checkMC(q);
+    if(!r||r.state==="empty"){ setFb(fb,""); return; }
+    scored++; if(r.state==="ok") earned++;
+    setFb(fb,r.state);
+  });
+  $$("[data-essay]",container).forEach(fb=>setFb(fb,"essay"));
+  return {scored,earned};
+}
+function gradeAll(){
+  let scored=0,earned=0;
+  ["#keg1","#keg2","#keg3","#keg4"].forEach(k=>{
+    const r=checkContainer($(k)); scored+=r.scored; earned+=r.earned;
+  });
+  const pct = scored? Math.round(earned/scored*100):0;
+  $("#lkScore").textContent=pct;
+  $("#lkMeter").style.width=pct+"%";
+  const badge=$("#lkBadge");
+  if(scored===0) badge.textContent="Ayo mulai dari Kegiatan 1 💪";
+  else if(pct>=90) badge.textContent="🏆 Luar biasa! Kamu menguasai SPtLDV.";
+  else if(pct>=75) badge.textContent="🌟 Hebat! Sedikit lagi menuju sempurna.";
+  else if(pct>=50) badge.textContent="💡 Bagus. Cek kembali langkah titik uji & irisan daerah.";
+  else badge.textContent="📖 Baca ulang materi Langkah 1–5, lalu coba lagi.";
+  saveLKPD();
+}
+function lkpdInit(){
+  $$("[data-check]").forEach(b=>b.addEventListener("click",()=>{
+    checkContainer($("#"+b.dataset.check));
+    gradeAll();
+  }));
+  $("#lkCheckAll").addEventListener("click",()=>{ gradeAll(); $("#lkScore").scrollIntoView({block:"center",behavior:"smooth"}); });
+  $("#lkReset").addEventListener("click",()=>{
+    if(!confirm("Hapus semua jawaban LKPD di perangkat ini?")) return;
+    try{localStorage.removeItem(LS_KEY)}catch(e){}
+    $$(".lkpd input[type=text],.lkpd input[type=number],.lkpd textarea").forEach(el=>el.value="");
+    $$(".lkpd input[type=radio],.lkpd input[type=checkbox]").forEach(el=>el.checked=false);
+    $$(".lkpd .fb").forEach(f=>f.className="fb");
+    $$(".lkpd input").forEach(i=>i.classList.remove("correct","wrong"));
+    $$(".opt").forEach(o=>o.classList.remove("picked","right","wrongpick"));
+    $("#lkScore").textContent="0"; $("#lkMeter").style.width="0%";
+    $("#lkBadge").textContent="Ayo mulai dari Kegiatan 1 💪";
+  });
+  loadLKPD();
+}
+
+/* ==========================================================================
+   9. KUIS
+   ========================================================================== */
+const QUIZ=[
+ {q:"Manakah yang merupakan <b>sistem</b> pertidaksamaan linear dua variabel?",
+  o:["2x + 3y = 12 dan x − y = 4","2x + 3y ≤ 12 dan x − y ≥ 1","x² + y ≤ 5 dan x ≥ 0","2x + 3y ≤ 12 (satu pertidaksamaan saja)"],a:1,
+  e:"Sistem SPtLDV harus memuat <b>dua atau lebih</b> pertidaksamaan linear dengan dua variabel. Pilihan (a) adalah SPLDV (persamaan), (c) bukan linear, (d) hanya satu pertidaksamaan."},
+ {q:"Garis batas pertidaksamaan <span class='mono'>3x + 2y &lt; 12</span> digambar …",
+  o:["tegas, karena memuat tanda lebih kecil","putus-putus, karena titik pada garis tidak termasuk penyelesaian","tegas, karena koefisiennya positif","putus-putus, karena ruas kanannya 12"],a:1,
+  e:"Tanda <b>&lt;</b> atau <b>&gt;</b> → garis putus-putus (titik batas tidak termasuk). Tanda ≤ atau ≥ → garis tegas."},
+ {q:"Titik potong garis <span class='mono'>4x + 2y = 20</span> dengan sumbu-X dan sumbu-Y berturut-turut adalah …",
+  o:["(5, 0) dan (0, 10)","(4, 0) dan (0, 20)","(10, 0) dan (0, 5)","(2, 0) dan (0, 4)"],a:0,
+  e:"y = 0 → 4x = 20 → x = 5. x = 0 → 2y = 20 → y = 10."},
+ {q:"Daerah penyelesaian <span class='mono'>x + y ≤ 4</span> dengan <span class='mono'>x ≥ 0, y ≥ 0</span> memiliki titik pojok …",
+  o:["(0,0), (4,0), (0,4)","(0,0), (4,0), (4,4), (0,4)","(0,0), (2,2), (4,4)","(4,0), (0,4), (2,2)"],a:0,
+  e:"Bentuknya segitiga siku-siku di kuadran I dengan titik pojok (0,0), (4,0), (0,4)."},
+ {q:"Titik potong garis <span class='mono'>2x + y = 8</span> dan <span class='mono'>4x + 2y = 20</span> adalah …",
+  o:["(2, 4)","(4, 2)","(1, 6)","(3, 2)"],a:0,
+  e:"Kalikan persamaan pertama dengan 2: 4x + 2y = 16. Kurangi dengan persamaan kedua: 0 = −4?? Perhatikan: 4x+2y=16 dan 4x+2y=20 ternyata <b>sejajar</b>! Hmm — periksa kembali dengan substitusi: dari 2x+y=8 → y=8−2x, substitusi ke 4x+2y=20 → 4x+16−4x=20 → 16=20 (kontradiksi). <b>Seharusnya</b> soal ini menggunakan sistem getuk kopyor Bu Sri: 2x + y ≤ 8 dan 4x + 2y ≤ 20. Karena kedua garis sejajar, yang mengikat adalah 2x+y ≤ 8 … "},
+ {q:"Perhatikan sistem <span class='mono'>2x + y ≤ 8</span>, <span class='mono'>x + 3y ≤ 15</span>, <span class='mono'>x ≥ 0</span>, <span class='mono'>y ≥ 0</span>. Titik potong kedua garis pertama adalah …",
+  o:["(1,8/3)","(2,4)","(3,2)","(9/5, 22/5)"],a:3,
+  e:"Eliminasi: kalikan persamaan pertama dengan 3 → 6x + 3y = 24; kurangi persamaan kedua → 5x = 9 → x = 9/5 = 1,8. Maka y = (15 − 1,8)/3 = 4,4 = 22/5."},
+ {q:"Titik berikut yang memenuhi sistem <span class='mono'>x + 2y ≤ 5</span> dan <span class='mono'>3x − y ≥ 4</span> adalah …",
+  o:["(0, 0)","(1, 3)","(3, 1)","(2, 2)"],a:2,
+  e:"(3,1): 3 + 2 = 5 ≤ 5 ✔ dan 9 − 1 = 8 ≥ 4 ✔. (0,0) gagal pada pertidaksamaan kedua; (1,3): 1+6=7 > 5 ✘; (2,2): 2+4=6 > 5 ✘."},
+ {q:"Bu Sri membuat getuk kopyor: kotak besar butuh 2 kg singkong, kotak kecil 1 kg, persediaan 8 kg. Model matematikanya (x = kotak besar, y = kotak kecil) adalah …",
+  o:["2x + y ≥ 8","x + 2y ≤ 8","2x + y ≤ 8","2x + y = 8"],a:2,
+  e:"Kebutuhan total singkong = 2x + y, dan tidak boleh melebihi persediaan 8 kg → 2x + y ≤ 8."},
+ {q:"Kedai Ronde Jago: <span class='mono'>3x + 2y ≤ 60</span>, <span class='mono'>x + y ≤ 20</span>, <span class='mono'>x ≥ 0, y ≥ 0</span>. Jika pendapatan <span class='mono'>f = 10.000x + 5.000y</span>, pendapatan maksimum adalah …",
+  o:["Rp100.000","Rp150.000","Rp200.000","Rp250.000"],a:1,
+  e:"Titik pojok: (0,20) → 100.000; (10,10) → 150.000; (20,0) → 200.000; (0,0) → 0. <b>Tunggu</b>: (20,0) memenuhi 3(20)+2(0)=60 ≤ 60 ✔ dan 20 ≤ 20 ✔, sehingga f = 200.000. Jawaban yang benar adalah <b>Rp200.000</b>."},
+ {q:"Sistem <span class='mono'>x + y ≥ 8</span> dan <span class='mono'>2x + 2y ≤ 10</span> memiliki daerah penyelesaian berupa …",
+  o:["segitiga di kuadran I","segiempat tak terbatas","himpunan kosong","garis lurus"],a:2,
+  e:"Pertidaksamaan kedua setara x + y ≤ 5, sedangkan yang pertama menuntut x + y ≥ 8. Kedua daerah tidak beririsan → himpunan kosong."}
+];
+/* koreksi kunci soal 5 & 9 agar konsisten dengan pembahasan */
+QUIZ[4] = {
+  q:"Sistem <span class='mono'>2x + y ≤ 8</span> dan <span class='mono'>4x + 2y ≤ 20</span> dengan <span class='mono'>x ≥ 0, y ≥ 0</span>. Pernyataan yang benar adalah …",
+  o:["Kedua garis berpotongan di (2, 4)","Kedua garis sejajar, sehingga salah satu pertidaksamaan redundan","Daerah penyelesaiannya kosong","Titik pojoknya (5, 0) dan (0, 10)"],
+  a:1,
+  e:"Garis 2x+y=8 dan 4x+2y=20 ⇔ 2x+y=10 memiliki gradien sama (−2) → <b>sejajar</b>. Daerah yang memenuhi keduanya ditentukan oleh yang lebih ketat, yaitu 2x + y ≤ 8. Jadi 4x+2y ≤ 20 <b>redundan</b> dan titik pojok daerahnya (0,0), (4,0), (0,8)."
+};
+QUIZ[8] = {
+  q:"Kedai Ronde Jago: <span class='mono'>3x + 2y ≤ 60</span>, <span class='mono'>x + y ≤ 20</span>, <span class='mono'>x ≥ 0, y ≥ 0</span>. Jika pendapatan <span class='mono'>f = 10.000x + 5.000y</span>, pendapatan maksimum adalah …",
+  o:["Rp100.000","Rp150.000","Rp200.000","Rp250.000"],
+  a:2,
+  e:"Titik pojok: (0,0) → 0; (20,0) → 200.000; (10,10) → 150.000; (0,20) → 100.000. Maksimum <b>Rp200.000</b> saat menjual 20 mangkuk ronde jahe."
+};
+
+function quizInit(){
+  const box=$("#quizBox");
+  QUIZ.forEach((it,i)=>{
+    const d=document.createElement("div");
+    d.className="quizcard";
+    d.innerHTML=`<h4><span class="n">${i+1}</span><span>${it.q}</span></h4>
+      <div class="opts">${it.o.map((o,k)=>`<label class="opt"><input type="radio" name="quiz${i}" value="${k}"><span>${o}</span></label>`).join("")}</div>
+      <div class="fb" data-ex></div>`;
+    box.appendChild(d);
+  });
+  box.addEventListener("change",e=>{ if(e.target.closest(".opt")) refreshOptStyles(); });
+  $("#quizCheck").addEventListener("click",()=>{
+    let benar=0, dijawab=0;
+    QUIZ.forEach((it,i)=>{
+      const card=$$(".quizcard",box)[i];
+      const sel=$(`input[name="quiz${i}"]:checked`,card);
+      const fb=$("[data-ex]",card);
+      $$(".opt",card).forEach(o=>o.classList.remove("right","wrongpick"));
+      if(!sel){ fb.className="fb show"; fb.style.color="var(--ink-3)"; fb.textContent="— belum dijawab"; return; }
+      dijawab++;
+      const picked=+sel.value;
+      $$(".opt",card)[it.a].classList.add("right");
+      if(picked===it.a){ benar++; fb.className="fb show ok"; fb.innerHTML="✔ Benar. "+it.e; }
+      else { $$(".opt",card)[picked].classList.add("wrongpick"); fb.className="fb show no"; fb.innerHTML="✘ Kurang tepat. "+it.e; }
+    });
+    const pct=Math.round(benar/QUIZ.length*100);
+    const r=$("#quizResult");
+    r.className="resultbox card show "+(pct>=75?"":"");
+    r.style.background = pct>=75 ? "var(--ok-soft)" : pct>=50 ? "var(--accent-soft)" : "var(--err-soft)";
+    r.innerHTML=`<div class="big" style="color:${pct>=75?"var(--ok)":pct>=50?"#92400e":"var(--err)"}">${benar}/${QUIZ.length}</div>
+      <div style="font-weight:800;margin-top:6px">Skor ${pct}</div>
+      <p style="margin:8px 0 0;color:var(--ink-2)">${
+        pct>=90?"Sempurna! Kamu siap lanjut ke materi Program Linear. 🎉":
+        pct>=75?"Bagus sekali. Perhatikan soal yang masih salah pada pembahasannya.":
+        pct>=50?"Lumayan. Ulangi bagian <b>Langkah Menggambar</b> dan coba alat grafik sekali lagi.":
+        "Jangan menyerah — baca ulang materi konsep, lalu kerjakan LKPD Kegiatan 1 dengan bantuan grafik."
+      } ${dijawab<QUIZ.length?`<br><i>(${QUIZ.length-dijawab} soal belum dijawab)</i>`:""}</p>`;
+    r.scrollIntoView({block:"center",behavior:"smooth"});
+  });
+  $("#quizReset").addEventListener("click",()=>{
+    $$("#quizBox input").forEach(i=>i.checked=false);
+    $$("#quizBox .opt").forEach(o=>o.classList.remove("right","wrongpick","picked"));
+    $$("#quizBox [data-ex]").forEach(f=>{f.className="fb";f.textContent="";f.style.color="";});
+    $("#quizResult").className="resultbox card";
+  });
+}
+
+/* ==========================================================================
+   10. REDRAW ALL (saat ganti tema) & BOOT
+   ========================================================================== */
+function redrawAll(){
+  [tool.plot, sim.plot, ...Object.values(miniPlots)].forEach(p=>{ if(p) p.render(); });
+}
+function safe(name, fn){
+  try{ fn(); }
+  catch(err){
+    if(window.console) console.error("[SPtLDV] gagal memuat "+name+":", err);
+    window.__bootErr = (window.__bootErr||[]).concat(name+": "+err.message);
+  }
+}
+function boot(){
+  safe("hero",      heroInit);
+  safe("simulasi",  simInit);
+  safe("alatGrafik",toolInit);
+  safe("miniGrafik",miniInit);
+  safe("lkpd",      lkpdInit);
+  safe("kuis",      quizInit);
+  // bersihkan pesan placeholder bila grafik berhasil digambar
+  $$(".js-placeholder").forEach(el=>el.remove());
+  if(window.__bootErr){
+    const d=document.createElement("div");
+    d.className="noscript-note";
+    d.style.margin="14px auto";
+    d.innerHTML="⚠ Sebagian komponen interaktif gagal dimuat di peramban ini: <span class='mono'>"+esc(window.__bootErr.join(" | "))+"</span>. Materi, LKPD, dan kunci jawaban tetap dapat dibaca/dicetak.";
+    $("#lkpd .lkpd-body")?.prepend(d);
+  }
+  revealAll();
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
+else boot();
+</script>
+</body>
+</html>
